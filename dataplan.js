@@ -56,17 +56,19 @@ let adjectives = [
 
 
 
-const promptSelectArray = [ 
-  promptSelectOne() { let promptOne = randomAdjective.concat(" ", randomNoun) }, 
-  promptSelectTwo()  {}, 
-  promptSelectThree() {} 
-]; 
+// const promptSelectArray = [ 
+//   promptSelectOne() { let promptOne = randomAdjective.concat(" ", randomNoun) }, 
+//   promptSelectTwo()  {}, 
+//   promptSelectThree() {} 
+// ]; 
+
 
 let randomNoun = nouns[Math.floor(Math.random()*nouns.length)];
 let randomAdjective = adjectives[Math.floor(Math.random()*adjectives.length)];
 
 let promptOne = randomAdjective.concat(" ", randomNoun)
 let promptTwo = randomNoun.concat(" ", randomNoun, " fusion")
+// test to see if this just will print two of the same nouns
 
 let todaysPrompt = ""
 // maybe title this userPrompt? Sometimes all users get the same prompt, sometimes users get different individualised ones
