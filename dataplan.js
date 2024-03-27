@@ -54,21 +54,27 @@ let adjectives = [
 
 // let verbs = ["fighting", ""];
 
+// const promptSelectArray = [
+//   promptSelectOne() { let promptOne = randomAdjective.concat(" ", randomNoun) },
+//   promptSelectTwo()  {},
+//   promptSelectThree() {}
+// ];
 
+//Would a switch statment be better as I could randomise which case (function) is used
+// and then make it always run the code to check the usedPrompts and add new successful prompts to it
 
-// const promptSelectArray = [ 
-//   promptSelectOne() { let promptOne = randomAdjective.concat(" ", randomNoun) }, 
-//   promptSelectTwo()  {}, 
-//   promptSelectThree() {} 
-// ]; 
+let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+let randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
 
-
-let randomNoun = nouns[Math.floor(Math.random()*nouns.length)];
-let randomAdjective = adjectives[Math.floor(Math.random()*adjectives.length)];
-
-let promptOne = randomAdjective.concat(" ", randomNoun)
-let promptTwo = randomNoun.concat(" ", randomNoun, " fusion")
+let promptOne = randomAdjective.concat(" ", randomNoun);
+let promptTwo = randomNoun.concat(" ", randomNoun, " fusion");
 // test to see if this just will print two of the same nouns
 
-let todaysPrompt = ""
+//maybe try functions called using a number in an object?
+
+//array.rpototype.find() - array.find looking through usedPrompts, if match is found, returns True - we want it to return 'undefined'
+
+// Would a string literal be the way to print 'userName userPrompt userMessage' for posts
+
+let todaysPrompt = "";
 // maybe title this userPrompt? Sometimes all users get the same prompt, sometimes users get different individualised ones
