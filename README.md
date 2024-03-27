@@ -7,3 +7,7 @@ In this, account and followers can almost take on the atmosphere of an improv gr
 This concept is open to many different variations and expansions in scope. There could be days where everyone gets the same prompt and must work together, ‘Prompt Battles’ wherein half the user base gets one prompt and the other gets a different one, and specially themed days - there are many, many possibilities.
 
 In all, Rogue’s Gallery aims to foster a positive and creative atmosphere via usage of prompting and encouragement of character work at large and between users.
+
+Key frontend features include: account registration, login, posting, replies to posts, liokes, access to prompts and individualised accounts collating each user's posts.
+
+INCLUDE SOME DESCRIPTION OF HOW IT WORKS - In terms of data - 'Is all of the content linked to one prompt stored in one place', 'Do users only see top voted posts and how'

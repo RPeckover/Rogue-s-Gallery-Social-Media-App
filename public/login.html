@@ -6,14 +6,19 @@
     <title>Rogue's Gallery</title>
   </head>
   <body>
-    <h1>Rogue's Gallery</h1>
+    <h1>Login</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="login.html">Login</a>
       <a href="logout.html">Logout</a>
       <a href="application.html">Help</a> 
-      <!-- Use stylesheet to hide and reveal login and logout in nav depending on what state the user is in -->
-  
     </nav>
+    <form action = "/login" methods="POST">
+<label>Username</label>
+<input type="text" id="username" name="username"><br>
+<label>Password</label>
+<input type="text" id="password" name="password"><br>
+<input type="submit" value="login">
+    </form>
   </body>
 </html>
