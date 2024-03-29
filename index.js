@@ -1,21 +1,42 @@
 const express = require("express");
-const utils = require("./utils.js");
+const utils=require('./utils.js')
 
 const app = express();
 app.listen(3005, () => console.log("Listening on port 3005"));
 
 app.use(express.static("./public"));
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json())
 
-app.post("/login", (request, response) => {
-  console.log(request.body);
-  response.redirect("loggedin.html");
-});
+app.use(express.urlencoded({extended: false}))
 
-app.post("/post", (request, response) => {
-  console.log(request.body);
-});
+const users=require('./users.js')
 
-// require('dotenv').config()
-// console.log(process.env.SECRET_FILE)
+function checkLoggedIn(request, response, nextAction){
+    if(true){
+        nextAction()
+    }
+}
+
+app.get('/app', checkLoggedIn, (request, response)=>{
+    response.redirect('./application.html')
+})
+
+app.post('/register', (request, response)=>{
+    console.log(users.getUsers())
+    response.redirect('/registered.html')
+})
+
+app.post('/login', (request, response)=>{
+    console.log(users.getUsers())
+    response.redirect('/loggedin.html')
+})
+
+app.post('/logout', (request, response)=>{
+    console.log(users.getUsers())
+    response.redirect('./loggedout.html')
+})
+
+app.post('/post', (request, response)=> {
+    console.log(request.body)
+})
