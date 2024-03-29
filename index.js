@@ -28,8 +28,13 @@ app.post('/register', (request, response)=>{
 })
 
 app.post('/login', (request, response)=>{
-    console.log(users.getUsers())
-    response.redirect('/loggedin.html')
+    // console.log(users.getUsers())
+    console.log(request.body)
+    if(users.checkPassword(request.body.username, request.body.password)){
+        response.redirect('/loggedin.html')
+    } else {
+        response.redirect('/loginfailed.html')
+    }
 })
 
 app.post('/logout', (request, response)=>{
