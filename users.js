@@ -40,18 +40,20 @@
         return false
     }
 
-// exports.newUser=newUser;
-// exports.getUsers=getUsers;
-// exports.findUser=findUser;
-// exports.checkPassword=checkPassword;
-// exports.setLoggedIn=setLoggedIn;
-// exports.isLoggedIn=isLoggedIn;
+exports.newUser=newUser;
+exports.getUsers=getUsers;
+exports.findUser=findUser;
+exports.checkPassword=checkPassword;
+exports.setLoggedIn=setLoggedIn;
+exports.isLoggedIn=isLoggedIn;
 
-module.exports={
-    newUser,
-    getUsers,
-    findUser,
-    checkPassword,
-    setLoggedIn,
-    isLoggedIn
-}
+// module.exports={
+//     newUser,
+//     getUsers,
+//     findUser,
+//     checkPassword,
+//     setLoggedIn,
+//     isLoggedIn
+// }
+
+// ^ Not sure I fully get what the difference was between this and the other export method

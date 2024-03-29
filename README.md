@@ -8,6 +8,14 @@ This concept is open to many different variations and expansions in scope. There
 
 In all, Rogue’s Gallery aims to foster a positive and creative atmosphere via usage of prompting and encouragement of character work at large and between users.
 
-Key frontend features include: account registration, login, posting, replies to posts, liokes, access to prompts and individualised accounts collating each user's posts.
+Key frontend features include: account registration, login, posting, following other accounts, replies to posts, likes, access to prompts and an individualised page collating each user's posts.
 
-INCLUDE SOME DESCRIPTION OF HOW IT WORKS - In terms of data - 'Is all of the content linked to one prompt stored in one place', 'Do users only see top voted posts and how'
+The base version of this concept loads one prompt per user per day via a randomised function and that user's posts during this window are labelled with that prompt. After 24 hours, users wil be given a new prompt.
+
+If a prompt already used is selected, it is placed in an array of used prompts.
+
+Each users content is stopred in an object and loaded onto their individual pages.
+
+Posts can be replied to by users with different prompts to provide interesting interactions. These messages are displayed appended to the initial post but are stored seperatley with that user's object.
+
+On the homepage users see posts from accounts they have liked/followed in the past and that have a lot of likes the latter of which is done via the post's object being checked for like count.

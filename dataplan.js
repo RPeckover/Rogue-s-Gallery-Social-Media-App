@@ -13,15 +13,34 @@ let post = {
   ],
 };
 
-let handWrittenPrompts = [];
+const user = {
+  username: "user1",
+  password: "123",
+  loggedin: true,
+  postCount: 20,
+  activePrompt: Userprompt,
+};
 
-let prompt = {
+const oneDay = 1000 * 60 * 60 * 24;
+
+let Userprompt = {
   user: userID, //number
   timeposted: Date.now(), //date
   post,
+  expiresIn: oneDay,
 };
 
 let usedPrompts = {};
+
+let handWrittenPrompts = [
+  "Pirate Captain Desperately trying to impress his crew",
+  "Robot increasingly anxious about mysterious bolt that fell off of their body",
+  "Door to door ice salesman in the Sahara desert",
+  "Hero Hailey, Savior of The Realm",
+  "Dastardly Derek, Crime Master of despair",
+  "Lost dad who is sure he can find his way home without directions",
+  "A sad but slightly threatening Clown"
+];
 
 let nouns = [
   "Wizard",

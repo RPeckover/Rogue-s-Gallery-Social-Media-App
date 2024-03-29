@@ -11,13 +11,43 @@
       <a href="index.html">Home</a>
       <a href="login.html">Login</a>
       <a href="logout.html">Logout</a>
-      <a href="application.html">Help</a> 
+      <a href="application.html">App</a> 
     </nav>
-<!-- <h2>post</h2>
-<form action="/post" method="POST">
-<label>Message</label>
-<input type="text" id="message" name="message"><br>
-<input type="submit" value="post">
-</form>
-  </body>
-</html> -->
+    <h2>New post</h2>
+    <form action="/newpost" method="POST">
+        <label>Message</label>
+        <input type="text" id="message" name="message">
+        <input type="submit" value="Post message">
+    </form>
+    <div>
+        <ul id="recent-posts">
+            <li>one</li>
+            <li>two</li>
+        </ul>
+    </div>
+    <script>
+        let recentPostsList=document.getElementById('recent-posts')
+
+        fetch('/getposts')
+            .then(response=>response.json())
+            .then(fetchedData=>{
+                console.log(fetchedData)
+                processPostData(fetchedData.posts)
+            })
+
+        function processPostData(data){
+            recentPostsList.innerHTML=''
+            data.forEach(function(post){
+                let li=document.createElement('li')
+                let liText=document.createElement('p')
+                liText.textContent=`${post.message} posted by: ${post.postedBy} (#${post.postID})`
+                li.appendChild(liText)
+                recentPostsList.appendChild(li)
+            })
+        }
+    </script>
+</body>
+</html>
+
+<!-- NOTABLE ISSUE - you can still post when logged out -->
+<!-- NOTABLE ISSUE - post time and likes aren't included in posts printed to app  -->
