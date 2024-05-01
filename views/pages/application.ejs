@@ -1,0 +1,24 @@
+<%- include('../partials/head') %>
+
+<body>
+  <%- include('../partials/header') %>
+  <h2>Welcome <= username %> to Rogue's Gallery</h2>
+  <p>Feel free to get into character</p>
+  <form action="/post" method="POST">
+    <label>Message</label>
+    <input type="text" id="message" name="message" /><br />
+    <input type="submit" value="post" />
+  </form>
+
+  <h2>Recent Posts</h2>
+  <ul>
+    < posts.forEach(post=>{%>
+    <li>
+      <p><%= post.message %></p>
+      <p><%= post.postedBy %></p>
+      <!-- <% let route=`/viewpost?post=${post._id}` %> -->
+      <!-- <a href= <= route %>viewPost</a> -->
+    </li>
+    <% }) %>
+  </ul>
+</body>

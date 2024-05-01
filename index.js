@@ -17,5 +17,31 @@ app.post("/post", (request, response) => {
   console.log(request.body);
 });
 
+function checkLoggedIn(request, response, nextAction) {
+  if (request.session) {
+    if (request.session.userid) {
+      nextAction();
+    } else {
+      request.session.destroy();
+      return response.render("pages/login");
+    }
+  }
+}
+
+app.get("/app", checkLoggedIn, async (request, response) => {
+  response.render("pages/app", {
+    username: request.session.userid,
+    posts: await postData.getPosts(5),
+  });
+});
+//ADD CURRENT PROMPT AS DATA TO THE ABOVE CODE
+
+// add mongoose
+
+const multer = require("multer");
+const upload = multer({ dest: "./public/uploads" });
+
+app.set("view engine", "ejs");
+
 // require('dotenv').config()
 // console.log(process.env.SECRET_FILE)
