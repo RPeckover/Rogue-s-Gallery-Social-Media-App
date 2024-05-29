@@ -39,7 +39,8 @@ let handWrittenPrompts = [
   "Hero Hailey, Savior of The Realm",
   "Dastardly Derek, Crime Master of despair",
   "Lost dad who is sure he can find his way home without directions",
-  "A sad but slightly threatening Clown"
+  "A sad but slightly threatening Clown",
+  "Dragon that lost their horde in a stock market crash"
 ];
 
 let nouns = [

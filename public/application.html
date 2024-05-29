@@ -12,9 +12,37 @@
       <a href="login.html">Login</a>
       <a href="logout.html">Logout</a>
       <a href="application.html">App</a> 
+    <!-- Use stylesheet to hide and reveal login and logout in nav depending on what state the user is in --> 
     </nav>
 
-    <h2>New post</h2>
+    <form action="/newpost" enctype="multipart/form-data" method="POST">
+        <label>Message</label><br>
+        <input type="file" name="myImage" accept="image/*"><br>
+        <input type="text" id="message" name="message"><br>
+        <input type="submit" value="Post">
+    </form>
+</body>
+</html>
+
+<!-- DO NOT WANT USER TO UPLOAD IMAGES AS REGULAR POSTS - JUST PFP I THINK -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <h2>New post</h2>
     <form action="/newpost" method="POST">
         <label>Message</label>
         <input type="text" id="message" name="message">
@@ -48,7 +76,7 @@
         }
     </script>
 </body>
-</html>
+</html> -->
 
 <!-- NOTABLE ISSUE - you can still post when logged out -->
 <!-- NOTABLE ISSUE - post time and likes aren't included in posts printed to app  -->

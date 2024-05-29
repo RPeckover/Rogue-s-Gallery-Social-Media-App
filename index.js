@@ -13,20 +13,34 @@ app.use(express.urlencoded({ extended: false }));
 
 const path = require("path");
 
-const users = require("./users.js");
+const users=require('./models/users.js')
 
 const tenMins = 1000 * 60 * 10;
+const oneHour = 1000 * 60 * 60;
 
 const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
 
+app.use(cookieParser());
+// const mongoDBPassword=process.env.MONGODBPASSWORD
+// const myUniqueDatabase="RoshanApp"
+// const sendgridAPIKey=process.env.SENDGRID_API_KEY
+
 require("dotenv").config();
 
 const mongoose = requre("mongoose");
-const connectionString = `mongodb+srv://CCO6005-00:${mongoDBPassword}@cluster0.lpfnqqx.mongodb.net/${Roshan}?retryWrites=true&w=majority`;
+const connectionString = `mongodb+srv://CCO6005-00:${mongoDBPassword}@cluster0.lpfnqqx.mongodb.net/${RoshanApp}?retryWrites=true&w=majority`;
 mongoose.connect(connectionString);
 
-app.use(cookieParser());
+const postData=require('./models/post-data.js')
+
+const multer=require('multer')
+//const upload=multer({dest: './public/uploads'})
+//Error with upload 'destination never read'
+
+//Add email verification with sendgrid etc!
+
+app.set('view engine', 'ejs')
 
 app.use(
   sessions({
@@ -44,76 +58,177 @@ function checkLoggedIn(request, response, nextAction) {
       nextAction();
     } else {
       request.session.destroy();
-      return response.redirect("/notloggedin.html");
-    }
+      response.render('pages/login',{
+        isLoggedIn: checkLoggedInState(request)
+    })
   }
 }
 
-app.get("/app", checkLoggedIn, (request, response) => {
-  response.redirect("./application.html");
-});
+function checkLoggedInState(request){
+    return (request.session && request.session.userid)
+}
 
-app.post("/register", (request, response) => {
-  console.log(request.body);
-  let userData = request.body;
-  if (users.findUser(userData.username)) {
-    console.log("user exists");
-    response.json({
-      status: "failed",
-      error: "user exists",
-    });
+app.get('/application', checkLoggedIn, async (request, response)=>{
+  // response.redirect('./application.html')
+  response.render('pages/application', {
+      username: request.session.userid,
+      isLoggedIn: checkLoggedInState(request),
+      postData: await postData.getPosts(5)
+  })
+})
+//Check that there isn't issues having both htlm page and ejs pages named 'application'
+
+app.get('/viewpost', checkLoggedIn, async (request, response)=>{
+  // response.redirect('./application.html')
+  let postID=request.query.postid//'66321bf0fdfeacf1d9fb6e88'
+  // console.log(postID)
+  let retrievedPost=await postData.getPost(postID)
+  // console.log(retrievedPost)
+  response.render('pages/viewpost', {
+      isLoggedIn: checkLoggedInState(request),
+      post: await postData.getPost(postID)
+  })
+})
+
+app.get('/like', checkLoggedIn, async (request, response)=>{
+  let postID=request.query.postid
+  await postData.likePost(postID)
+  response.render('pages/app', {
+      username: request.session.userid,
+      isLoggedIn: checkLoggedInState(request),
+      postData: await postData.getPosts(5)
+  })
+})
+
+app.post('/comment', checkLoggedIn, async (request, response)=>{
+  // let postID=request.query.postid
+  await postData.commentOnPost(request.body.postid, request.body.comment, request.session.userid)
+  response.render('pages/viewpost', {
+      isLoggedIn: checkLoggedInState(request),
+      post: await postData.getPost(request.body.postid)
+  })
+})
+
+app.get('/register', (request, response)=>{
+  response.render('pages/register', {
+      isLoggedIn: checkLoggedInState(request)
+  })
+})
+
+app.get('/logout', (request, response)=>{
+  response.render('pages/logout', {
+      isLoggedIn: checkLoggedInState(request)
+  })
+})
+
+app.get('/profile', (request, response)=>{
+  response.render('pages/profile', {
+      isLoggedIn: checkLoggedInState(request)
+  })
+})
+
+app.get('/login', (request, response)=>{
+  response.render('pages/login', {
+     isLoggedIn: checkLoggedInState(request)
+  })
+})
+
+//controller for logout
+app.post('/logout', async (request, response)=>{
+  
+  // users.setLoggedIn(request.session.userid,false)
+  request.session.destroy()
+  console.log(await users.getUsers())
+  response.redirect('./')
+})
+
+app.post('/register', async (request, response)=>{
+  console.log(request.body)
+  let userData=request.body
+  // console.log(userData.username)
+  if(await users.findUser(userData.username)){
+      console.log('user exists')
+      response.json({
+          status: 'failed',
+          error:'user exists'
+      })
   } else {
-    users.newUser(userData.username, userData.password);
-    response.redirect("/registered.html");
+      await users.newUser(userData.username, userData.password)
+      response.redirect('/registered.html')
   }
-  console.log(users.getUsers());
-});
+  console.log(await users.getUsers())
+})
 
-app.post("/login", (request, response) => {
-  console.log(request.body);
-  let userData = request.body;
-  console.log(userData);
-  if (users.findUser(userData.username)) {
-    console.log("user found");
-    if (users.checkPassword(userData.username, userData.password)) {
-      console.log("password matches");
-      request.session.userid = userData.username;
-      users.setLoggedIn(userData.username, true);
-      // ^ Does this not require more security?
-      response.redirect("/loggedin.html");
+app.post('/login', async (request, response)=>{
+  console.log(request.body)
+  let userData=request.body
+  console.log(userData)
+  if(await users.findUser(userData.username)){
+      console.log('user found')
+      //with bcrypt code must be passed as callback
+      await users.checkPassword(userData.username, userData.password, async function(isMatch){
+          if(isMatch){
+              console.log('password matches')
+              request.session.userid=userData.username
+              response.redirect('/app')
+          } else {
+              console.log('password wrong')
+              response.redirect('/loginfailed.html')
+          }
+      })
     } else {
-      console.log("password wrong");
-      response.redirect("/loginfailed.html");
-    }
-  } else {
-    console.log("username not found");
-    response.redirect("/loginfailed.html");
+      console.log('no such user')
+      response.redirect('/loginfailed.html')
   }
-  console.log(users.getUsers());
-});
+})
 
-app.post("/logout", (request, response) => {
-  users.setLoggedIn(request.session.userid, false);
-  request.session.destroy();
-  console.log(users.getUsers());
-  response.redirect("./loggedout.html");
-});
+// app.post("/logout", (request, response) => {
+//   users.setLoggedIn(request.session.userid, false);
+//   request.session.destroy();
+//   console.log(users.getUsers());
+//   response.redirect("./loggedout.html");
+// });
+
+app.post('/logout', async (request, response)=>{
+    
+  request.session.destroy()
+  console.log(await users.getUsers())
+  response.redirect('./')
+})
 
 app.post("/post", (request, response) => {
   console.log(request.body);
 });
 
-const postData = require("./posts-data.js");
+// app.post("/newpost", (request, response) => {
+//   console.log(request.body);
+//   postData.addNewPost(request.session.userid, request.body.message);
+//   response.redirect("./application.html");
+// });
 
-app.post("/newpost", (request, response) => {
-  console.log(request.body);
-  postData.addNewPost(request.session.userid, request.body.message);
-  response.redirect("./application.html");
-});
+app.post('/newpost', upload.single('myImage'), async (request, response) =>{
+  console.log(request.body)
+  console.log(request.session.userid)
+  console.log(request.file)
+  let filename=null
+  if(request.file && request.file.filename){ //check file exists and has a file name
+      filename='uploads/'+request.file.filename
+  }
+  postData.addNewPost(request.session.userid, request.body, filename)
+  response.render('pages/application', {
+      username: request.session.userid,
+      isLoggedIn: checkLoggedInState(request),
+      postData: await postData.getPosts(5)
+  })
+})
+//I DONT WANT USERS MAKING IMAGE POSTS REGULARLY (I DON'T THINK) ASK ABOUT THIS
 
-app.get("/getposts", (request, response) => {
-  response.json({ posts: postData.getPosts(5) });
-});
+
+app.get('/getposts',async (request, response)=>{
+  response.json(
+      {posts:await postData.getPosts(5)}
+  )
+})
 
 function checkLoggedIn(request, response, nextAction) {
   if (request.session) {
@@ -140,6 +255,8 @@ const multer = require("multer");
 const upload = multer({ dest: "./public/uploads" });
 
 app.set("view engine", "ejs");
+
+}
 
 // require('dotenv').config()
 // console.log(process.env.SECRET_FILE)
