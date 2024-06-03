@@ -1,0 +1,13 @@
+body {
+  background-color: rgb(58, 143, 227);
+}
+
+h1 {
+  color: darkslateblue;
+  margin: 20px;
+}
+
+/* Add responsive nav bar css 
+(With mind to the EJS / make sure EJS is implimented correctly) */
+
+/* Darkmode with switch between dark and light */

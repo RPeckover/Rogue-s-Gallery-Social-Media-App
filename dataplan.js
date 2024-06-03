@@ -98,3 +98,6 @@ let promptTwo = randomNoun.concat(" ", randomNoun, " fusion");
 
 let todaysPrompt = "";
 // maybe title this userPrompt? Sometimes all users get the same prompt, sometimes users get different individualised ones
+
+
+//Maybe delete uploads folder? doesn't seem necessary if images are just for pfps but maybe I am wrong
