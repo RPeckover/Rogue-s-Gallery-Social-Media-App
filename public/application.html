@@ -3,46 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Rogue's Gallery</title>
   </head>
   <body>
+    <header>
     <h1>Welcome to Rogue's Gallery</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="login.html">Login</a>
       <a href="logout.html">Logout</a>
-      <a href="application.html">App</a> 
-    <!-- Use stylesheet to hide and reveal login and logout in nav depending on what state the user is in --> 
+      <a href="application.html">App</a>
+      <!-- Use stylesheet to hide and reveal login and logout in nav depending on what state the user is in -->
     </nav>
+</header>
+<div class="container">
 
     <form action="/newpost" enctype="multipart/form-data" method="POST">
-        <label>Message</label><br>
-        <input type="file" name="myImage" accept="image/*"><br>
-        <input type="text" id="message" name="message"><br>
-        <input type="submit" value="Post">
+      <label>Message</label><br />
+      <input type="file" name="myImage" accept="image/*" /><br />
+      <input type="text" id="message" name="message" /><br />
+      <input type="submit" value="Post" />
     </form>
-</body>
+  </body>
+
+</div>
+
 </html>
 
 <!-- DO NOT WANT USER TO UPLOAD IMAGES AS REGULAR POSTS - JUST PFP I THINK -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <h2>New post</h2>
+<!-- <h2>New post</h2>
     <form action="/newpost" method="POST">
         <label>Message</label>
         <input type="text" id="message" name="message">
@@ -81,8 +72,7 @@
 <!-- NOTABLE ISSUE - you can still post when logged out -->
 <!-- NOTABLE ISSUE - post time and likes aren't included in posts printed to app  -->
 
-
-    <!-- <h2>post</h2>
+<!-- <h2>post</h2>
 <form action="/post" method="POST">
 <label>Message</label>
 <input type="text" id="message" name="message"><br>
@@ -90,4 +80,3 @@
 </form>
   </body>
 </html> -->
-

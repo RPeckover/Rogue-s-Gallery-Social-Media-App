@@ -38,9 +38,43 @@ const multer = require("multer");
 const upload = multer({ dest: "./public/uploads" });
 //Error with upload 'destination never read'
 
-//Add email verification with sendgrid etc!
+//Add email verification with sendgrid etc! - DON'T DO THIS
 
 app.set("view engine", "ejs");
+
+// res.render allows the loading of a ejs view file
+
+// Do the file paths need /views at the front of them?
+
+// application page
+app.get("/", function (req, res) {
+  res.render("pages/application");
+});
+
+// login page
+app.get("/", function (req, res) {
+  res.render("pages/login");
+});
+
+// logout page
+app.get("/", function (req, res) {
+  res.render("pages/logout");
+});
+
+// profile page
+app.get("/", function (req, res) {
+  res.render("pages/profile");
+});
+
+// register page
+app.get("/", function (req, res) {
+  res.render("pages/register");
+});
+
+// viewpost page
+app.get("/", function (req, res) {
+  res.render("pages/viewpost");
+});
 
 app.use(
   sessions({

@@ -1,16 +1,52 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap");
 
+header {
+  width: 100%;
+  background-color: rgb(35, 30, 91);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #fff;
+  justify-content: space-between;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  /* Selects all `h1` elements that are somewhere inside of a `header` element, in this case the title */
+  font-size: 200%;
+  margin-left: 20px;
+}
+
+nav {
+  margin: 20px;
+}
+
 body {
-  background-color: rgb(58, 143, 227);
+  background-color: rgb(44, 60, 77);
 }
 
 h1 {
   font-family: "Kumar One Outline", system-ui;
-  color: darkslateblue;
+  color: rgb(76, 60, 180);
   margin: 20px;
 }
 
-/* Add responsive nav bar css 
-(With mind to the EJS / make sure EJS is implimented correctly) */
+.container {
+  max-width: 1280px;
+  /* contrains the width of the container to 1280px */
+  margin: 0 auto;
+  /* allows for dynamic centering via the browser */
+}
 
-/* Darkmode with switch between dark and light */
+.post-container {
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+}
+
+/* Darkmode with switch between dark and light? */

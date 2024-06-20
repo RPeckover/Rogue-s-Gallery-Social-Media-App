@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Rogue's Gallery</title>
-</head>
-<body>
-    <h1>Rogue's Gallery</h1>
-    <h2>User Registration</h2>
-    <nav>
-      <a href="login.html">Login</a>
-      <a href="logout.html">Logout</a>
-      <a href="register.html">Register</a>
-      <a href="application.html">App</a>
-                  <!-- Use stylesheet to hide and reveal login and logout in nav depending on what state the user is in --> 
-    </nav>
+  </head>
+  <body>
+    <header>
+      <h1>Rogue's Gallery</h1>
+      <h2>User Registration</h2>
+      <nav>
+        <a href="login.html">Login</a>
+        <a href="logout.html">Logout</a>
+        <a href="register.html">Register</a>
+        <a href="application.html">App</a>
+        <!-- Use stylesheet to hide and reveal login and logout in nav depending on what state the user is in -->
+      </nav>
+    </header>
+
     <h2>Register your free account!</h2>
     <form action="/register" method="POST">
-        <label>Username</label>
-        <input type="text" id="username" name="username"><br>
-        <label>Password</label>
-        <input type="text" id="password" name="password"><br>
-        <input type="submit" value="Register">
+      <label>Username</label>
+      <input type="text" id="username" name="username" /><br />
+      <label>Password</label>
+      <input type="text" id="password" name="password" /><br />
+      <input type="submit" value="Register" />
     </form>
-    
+
     <script></script>
-</body>
+  </body>
 </html>
