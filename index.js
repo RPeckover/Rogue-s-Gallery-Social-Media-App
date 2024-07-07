@@ -290,8 +290,6 @@ app.get("/getposts", async (request, response) => {
 // });
 //ADD CURRENT PROMPT AS DATA TO THE ABOVE CODE
 
-app.set("view engine", "ejs");
-
 // require('dotenv').config()
 // console.log(process.env.SECRET_FILE)
 
