@@ -39,6 +39,15 @@ const multer = require("multer");
 const upload = multer({ dest: "./public/uploads" });
 //Error with upload 'destination never read'
 
+
+app.post('/profile-edit', upload.single('avatar'), function (req, res) {
+   // req.file is the name of your file in the form above, here 'uploaded_file'
+   // req.body holds all text fields
+   console.log(req.file, req.body)
+});
+
+
+
 //Add email verification with sendgrid etc! - DON'T DO THIS
 
 app.set("view engine", "ejs");

@@ -21,10 +21,20 @@
       </nav>
     </header>
 
-    <form action="/profile" method="post" enctype="multipart/form-data">
+    <!-- <form action="/profile" method="post" enctype="multipart/form-data">
       <input type="file" name="avatar" />
-      <!-- <input type="text" name="username" /> -->
-      <!-- <input type="password" name="password" /> -->
+      <input type="text" name="username" />
+      <input type="password" name="password" />
+    </form> -->
+
+    <form action="/profile-edit" method="post" enctype="multipart/form-data">
+      <div class="profile-form">
+        <input type="file" name="avatar" />
+        <input type="text" placeholder="Username" name="username" />
+        <input type="text" placeholder="Password" name="password" />
+        <input type="submit" value="Change user details" />
+        <!-- Add classes to the inputs? -->
+      </div>
     </form>
   </body>
 </html>

@@ -41,6 +41,7 @@ border: 3px solid #f1f1f1;
   margin: 0 auto;
   /* allows for dynamic centering via the browser */
 }
+/* Have not implimented .container class yet ^ */
 
 .post-container {
   display: flex;
@@ -49,6 +50,11 @@ border: 3px solid #f1f1f1;
 }
 
 .login-form {
+  display: inline-block;
+  /* justify-content: center; */
+}
+
+.profile-form {
   display: flex;
   justify-content: center;
 }

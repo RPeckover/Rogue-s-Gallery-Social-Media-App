@@ -1,6 +1,7 @@
 <%- include('../partials/head')%>
 <body>
     <%- include('../partials/header')%>
+    <div class="container">
     <h2>Please login</h2>
     <form action="/login" method="POST">
         <label>Username</label>
@@ -9,6 +10,7 @@
         <input type="password" id="password" name="password"><br>
         <input type="submit" value="Login">
     </form>
+    </div>
 </body>
 <%- include('../partials/footer')%>
 
