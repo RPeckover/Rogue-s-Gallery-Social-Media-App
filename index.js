@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 const path = require("path");
+//what is the purpose of this? ^
 
 const users = require("./models/users.js");
 
@@ -44,8 +45,6 @@ app.set("view engine", "ejs");
 
 // res.render allows the loading of a ejs view file
 
-// Do the file paths need /views at the front of them?
-
 // application page
 app.get("/", function (req, res) {
   res.render("pages/application");
@@ -75,6 +74,9 @@ app.get("/", function (req, res) {
 app.get("/", function (req, res) {
   res.render("pages/viewpost");
 });
+
+// app.get('/login')
+//   res.render("login.ejs");
 
 app.use(
   sessions({
