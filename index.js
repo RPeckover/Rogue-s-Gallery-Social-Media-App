@@ -188,6 +188,13 @@ app.post("/logout", async (request, response) => {
   response.redirect("./");
 });
 
+// app.post("/logout", (request, response) => {
+//   users.setLoggedIn(request.session.userid, false);
+//   request.session.destroy();
+//   console.log(users.getUsers());
+//   response.redirect("./loggedout.html");
+// });
+
 app.post("/register", async (request, response) => {
   console.log(request.body);
   let userData = request.body;
@@ -230,19 +237,6 @@ app.post("/login", async (request, response) => {
     console.log("no such user");
     response.redirect("/loginfailed.html");
   }
-});
-
-// app.post("/logout", (request, response) => {
-//   users.setLoggedIn(request.session.userid, false);
-//   request.session.destroy();
-//   console.log(users.getUsers());
-//   response.redirect("./loggedout.html");
-// });
-
-app.post("/logout", async (request, response) => {
-  request.session.destroy();
-  console.log(await users.getUsers());
-  response.redirect("./");
 });
 
 app.post("/post", (request, response) => {
