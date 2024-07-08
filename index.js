@@ -3,7 +3,7 @@ const utils = require("./utils.js");
 // Need to figure out what is best placed in utils
 
 const app = express();
-app.listen(3005, () => console.log("Listening on port 3005"));
+app.listen(3007, () => console.log("Listening on port 3007"));
 
 app.use(express.static("./public"));
 
@@ -23,15 +23,15 @@ const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
-// const mongoDBPassword=process.env.MONGODBPASSWORD
-// const myUniqueDatabase="RoshanApp"
 
 require("dotenv").config();
+// const mongoDBPassword=process.env.MONGODBPASSWORD
+// const myUniqueDatabase="RoshanApp"
 
 const mongoose = require("mongoose");
 const connectionString = `mongodb+srv://CCO6005-00:black.D0g@cluster0.lpfnqqx.mongodb.net/RoshanApp?retryWrites=true&w=majority`;
 mongoose.connect(connectionString);
-//OI GET .ENV WORKING AND FIX CONNECTION STRING
+//OI - GET .ENV WORKING AND FIX CONNECTION STRING
 
 const postData = require("./models/post-data.js");
 
@@ -46,8 +46,6 @@ app.post("/profile-edit", upload.single("avatar"), function (req, res) {
 });
 
 //Add email verification with sendgrid etc! - DON'T DO THIS
-
-app.set("view engine", "ejs");
 
 // res.render allows the loading of a ejs view file
 // This seems redundant as later code does stuff that appears the same?
@@ -108,6 +106,8 @@ function checkLoggedIn(request, response, nextAction) {
   }
 }
 
+app.set("view engine", "ejs");
+
 function checkLoggedInState(request) {
   return request.session && request.session.userid;
 }
@@ -125,8 +125,9 @@ app.get("/viewpost", checkLoggedIn, async (request, response) => {
   // response.redirect('./application.html')
   let postID = request.query.postid; //'66321bf0fdfeacf1d9fb6e88'
   // console.log(postID)
-  let retrievedPost = await postData.getPost(postID);
+  //let retrievedPost = await postData.getPost(postID);
   // console.log(retrievedPost)
+  //Above lines are for testing ^
   response.render("pages/viewpost", {
     isLoggedIn: checkLoggedInState(request),
     post: await postData.getPost(postID),
@@ -136,7 +137,7 @@ app.get("/viewpost", checkLoggedIn, async (request, response) => {
 app.get("/like", checkLoggedIn, async (request, response) => {
   let postID = request.query.postid;
   await postData.likePost(postID);
-  response.render("pages/app", {
+  response.render("pages/application", {
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
     postData: await postData.getPosts(5),
@@ -227,6 +228,7 @@ app.post("/login", async (request, response) => {
           console.log("password matches");
           request.session.userid = userData.username;
           response.redirect("/application");
+          // "pages/application" for EJS?
         } else {
           console.log("password wrong");
           response.redirect("/loginfailed.html");
@@ -239,9 +241,10 @@ app.post("/login", async (request, response) => {
   }
 });
 
-app.post("/post", (request, response) => {
-  console.log(request.body);
-});
+// app.post("/post", (request, response) => {
+//   console.log(request.body);
+// });
+// Was this for testing? ^
 
 // app.post("/newpost", (request, response) => {
 //   console.log(request.body);
@@ -249,7 +252,7 @@ app.post("/post", (request, response) => {
 //   response.redirect("./application.html");
 // });
 
-app.post("/newpost", upload.single("myImage"), async (request, response) => {
+app.post("/newpost", checkLoggedIn, upload.single("myImage"), async (request, response) => {
   console.log(request.body);
   console.log(request.session.userid);
   console.log(request.file);

@@ -2,13 +2,16 @@
 
 header {
   width: 100%;
+  /* margin: 0%;
+  padding: 0%;
+  height: 100vh; */
+  /* margin: 0 auto; */
   background-color: rgb(35, 30, 91);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  color: #fff;
   justify-content: space-between;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
 }
 
 header h1 {
@@ -17,8 +20,17 @@ header h1 {
   margin-left: 20px;
 }
 
-nav {
+/* nav {
   margin: 20px;
+} */
+
+ul {
+  display: flex;
+  list-style-type: none;
+}
+
+li {
+  margin: 10px;
 }
 
 body {
@@ -41,7 +53,6 @@ border: 3px solid #f1f1f1;
   margin: 0 auto;
   /* allows for dynamic centering via the browser */
 }
-/* Have not implimented .container class yet ^ */
 
 .post-container {
   display: flex;
