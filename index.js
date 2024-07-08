@@ -106,10 +106,10 @@ function checkLoggedIn(request, response, nextAction) {
       });
     }
   }
+}
 
-  function checkLoggedInState(request) {
-    return request.session && request.session.userid;
-  }
+function checkLoggedInState(request) {
+  return request.session && request.session.userid;
 }
 
 app.get("/application", checkLoggedIn, async (request, response) => {
