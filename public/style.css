@@ -34,7 +34,19 @@ li {
 }
 
 body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
   background-color: rgb(46, 62, 78);
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 h1 {
@@ -64,6 +76,7 @@ border: 3px solid #f1f1f1;
 
 .btn {
   padding: 0.4rem;
+  /* position: relative; */
   border: 1px solid rgb(76, 60, 180);
   background-color: rgb(35, 30, 91);
 }
@@ -81,12 +94,14 @@ border: 3px solid #f1f1f1;
 
 .login-form {
   display: inline-block;
+  /* align-items: center; */
   /* justify-content: center; */
 }
+/* SEE IF THE ABOVE IS NEEDED ^ */
 
 .profile-form {
-  display: flex;
-  justify-content: center;
+  display: inline-block;
+  /* justify-content: center; */
 }
 
 /* Darkmode with switch between dark and light? */

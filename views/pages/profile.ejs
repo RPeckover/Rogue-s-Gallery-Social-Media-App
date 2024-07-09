@@ -2,15 +2,17 @@
 <body>
   <%- include('../partials/header')%>
   <div class="container">
-    <h1>Welcome to your profile</h1>
+<main>
+    <h2>Welcome to your profile</h2>
     <h4>Profile info</h4>
     <form action="/profile-edit" method="post" enctype="multipart/form-data">
       <div class="profile-form">
         <input type="file" name="avatar" />
         <input type="text" placeholder="Username" name="username" />
         <input type="text" placeholder="Password" name="password" />
-        <input type="submit" value="Change user details" />
+        <input type="submit" value="Submit changes" />
         <!-- Add classes to the inputs? -->
       </div>
     </form>
+</main>
     <%- include('../partials/footer')%>

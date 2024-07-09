@@ -2,13 +2,20 @@
 <body>
     <%- include('../partials/header')%>
     <div class="container">
-    <h2>Please login</h2>
+<main>
+    <div class="login-form">
+    <h2>Step into character</h2>
     <form action="/login" method="POST">
         <label>Username</label>
-        <input type="text" id="username" name="username"><br>
+        <input required type="text" id="username" name="username"><br>
         <label>Password</label>
-        <input type="password" id="password" name="password"><br>
+        <input required type="password" id="password" name="password"><br>
         <input type="submit" value="Login">
     </form>
+    <a href="">Forgotten password?</a>
+    <br>
+    <a class="btn" href="/register">Create new account</a>
+    </div>
+</main>
 <%- include('../partials/footer')%>
 

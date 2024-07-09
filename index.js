@@ -208,7 +208,7 @@ app.post("/register", async (request, response) => {
     });
   } else {
     await users.newUser(userData.username, userData.password);
-    response.redirect("/registered.html");
+    response.redirect("/application");
   }
   console.log(await users.getUsers());
 });
@@ -241,9 +241,9 @@ app.post("/login", async (request, response) => {
   }
 });
 
-// app.post("/post", (request, response) => {
-//   console.log(request.body);
-// });
+app.post("/post", (request, response) => {
+  console.log(request.body);
+});
 // Was this for testing? ^
 
 // app.post("/newpost", (request, response) => {

@@ -2,6 +2,7 @@
 <body>
     <%- include('../partials/header')%>
     <div class="container">
+<main>
     <h1>Welcome to the app</h1>
     <h4>Username: <%= username %></h4>
     <h2>Create a new post</h2>
@@ -9,6 +10,7 @@
         <label>Message</label><br>
         <input type="file" name="myImage" accept="image/*"><br>
         <input type="text" id="message" name="message"><br>
+        <!-- Make one of two of the inputs (image or text) required -->
         <input type="submit" value="Post">
     </form>
     <hr>
@@ -36,4 +38,5 @@
         <% }) %>
     </ul>
     </div>
+</main>
 <%- include('../partials/footer')%>

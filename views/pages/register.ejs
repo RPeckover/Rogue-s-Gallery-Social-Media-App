@@ -2,12 +2,17 @@
 <body>
     <%- include('../partials/header')%>
     <div class="container">
-    <h1>Please register</h1>
+<main>
+    <h2>Please register</h2>
     <form action="/register" method="POST">
         <label>Username</label>
-        <input type="text" id="username" name="username"><br>
+        <input required type="text" id="username" name="username"><br>
         <label>Password</label>
-        <input type="password" id="password" name="password"><br>
+        <input required type="password" id="password" name="password"><br>
+        <!-- Add 'confirm password' input that has to match 'password' -->
+        I agree to the terms and conditions <input type="checkbox" id="terms-checkbox">
+        <br>
         <input type="submit" value="Register">
     </form>
+</main>
 <%- include('../partials/footer')%>
