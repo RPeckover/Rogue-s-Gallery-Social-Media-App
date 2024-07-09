@@ -43,15 +43,34 @@ h1 {
   margin: 20px;
 }
 
+a {
+  color: rgb(76, 60, 180);
+}
+
 /* form {
 border: 3px solid #f1f1f1; 
 } */
+
+.footer {
+  flex-shrink: 0;
+}
 
 .container {
   max-width: 1280px;
   /* contrains the width of the container to 1280px */
   margin: 0 auto;
   /* allows for dynamic centering via the browser */
+}
+
+.btn {
+  padding: 0.4rem;
+  border: 1px solid rgb(76, 60, 180);
+  background-color: rgb(35, 30, 91);
+}
+
+.btn:hover {
+  background-color: rgb(33, 24, 138);
+  color: rgb(91, 80, 222);
 }
 
 .post-container {

@@ -14,6 +14,7 @@ const SALT_WORK_FACTOR = 10;
 
 userSchema.pre("save", function (next) {
   let user = this;
+//Why do we make user = 'this'?  - copied from bcrypt
 
   // only hash the password if it has been modified (or is new)
   if (!user.isModified("password")) return next();

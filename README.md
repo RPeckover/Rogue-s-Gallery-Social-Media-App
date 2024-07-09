@@ -1,6 +1,6 @@
 Rogue’s Gallery is a social media platform centered around user expression and collaborative storytelling which aims to facilitate these core values via usage of prompts. Periodically, users are provided a new prompt for a scenario or character they are encouraged to post from the perspective of.
 
-These prompts could be anything from ‘Pirate Captain Desperately trying to impress his crew’ or ‘Door to door ice salesman in the Mojave Desert’. From here the users can post how they imagine they might in the prompted scenario and combine that with other users posts and characters.
+These prompts could be anything from ‘Pirate Captain desperately trying to impress their crew’ or ‘Door to door ice salesman in the Sahara Desert’. From here the users can post how they imagine they might in the prompted scenario and combine that with other users posts and characters.
 
 In this, account and followers can almost take on the atmosphere of an improv group, building on each other's messages and prompts to create emergent narratives.
 
@@ -14,7 +14,7 @@ The base version of this concept loads one prompt per user per day via a randomi
 
 If a prompt already used is selected, it is placed in an array of used prompts.
 
-Each users content is stopred in an object and loaded onto their individual pages.
+Each users content is stored in an object and loaded onto their individual pages.
 
 Posts can be replied to by users with different prompts to provide interesting interactions. These messages are displayed appended to the initial post but are stored seperatley with that user's object.
 
