@@ -33,21 +33,26 @@ li {
   margin: 10px;
 }
 
-body {
+html {
   height: 100%;
-  padding: 0;
-  margin: 0;
 }
 
 body {
   display: flex;
   flex-direction: column;
   background-color: rgb(46, 62, 78);
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
-main {
-  flex: 1 0 auto;
-}
+/* body > footer {
+  margin: 0px;
+  padding: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  height: auto;
+} */
 
 h1 {
   font-family: "Kumar One Outline", system-ui;
@@ -65,13 +70,18 @@ border: 3px solid #f1f1f1;
 
 .footer {
   flex-shrink: 0;
+  text-align: center;
+  background-color: rgb(35, 30, 91);
+  width: 100%;
 }
 
-.container {
+.content-wrapper {
+  flex: 1 0 auto;
   max-width: 1280px;
   /* contrains the width of the container to 1280px */
   margin: 0 auto;
   /* allows for dynamic centering via the browser */
+  height: auto;
 }
 
 .btn {
