@@ -82,6 +82,10 @@ a {
 border: 3px solid #f1f1f1; 
 } */
 
+.container {
+  display: grid;
+}
+
 .footer {
   flex-shrink: 0;
   text-align: center;

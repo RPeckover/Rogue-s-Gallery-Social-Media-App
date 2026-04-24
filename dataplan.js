@@ -55,10 +55,10 @@ let nouns = [
   "Karate Master",
   "Monster Hunter",
   "Spacefarer",
-  "Dastardly Villain",
-  "Noble Hero",
-  "Edgy Antihero",
-  "Pretentious Artist",
+  "Villain",
+  "Hero",
+  "Antihero",
+  "Artist",
 ];
 
 let adjectives = [
@@ -70,6 +70,10 @@ let adjectives = [
   "Brash",
   "Overconfident",
   "Suspicious",
+  "Dastardly",
+  "Noble",
+  "Edgy",
+  "Pretentious"
 ];
 
 // let verbs = ["fighting", ""];
