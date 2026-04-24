@@ -6,7 +6,7 @@ header {
   padding: 0%;
   height: 100vh; */
   /* margin: 0 auto; */
-  background-color: rgb(35, 30, 91);
+  background-color: rgb(41, 33, 119);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -17,7 +17,9 @@ header {
 header h1 {
   /* Selects all `h1` elements that are somewhere inside of a `header` element, in this case the title */
   font-size: 200%;
-  margin-left: 20px;
+  font-family: "Kumar One Outline", system-ui;
+  color: rgb(89, 67, 233);
+  margin: 20px;
 }
 
 /* nav {
@@ -40,10 +42,18 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  background-color: rgb(46, 62, 78);
+  background-color: rgb(62, 88, 114);
   height: 100%;
   padding: 0;
   margin: 0;
+}
+
+img {
+  margin: 10px;
+}
+
+.full-nav {
+  color: rgb(89, 67, 233);
 }
 
 /* body > footer {
@@ -56,12 +66,16 @@ body {
 
 h1 {
   font-family: "Kumar One Outline", system-ui;
-  color: rgb(76, 60, 180);
+  color: rgb(89, 67, 233);
   margin: 20px;
 }
 
+.purple-text {
+  color: rgb(89, 67, 233);
+}
+
 a {
-  color: rgb(76, 60, 180);
+  color: rgb(89, 67, 233);
 }
 
 /* form {
@@ -71,7 +85,8 @@ border: 3px solid #f1f1f1;
 .footer {
   flex-shrink: 0;
   text-align: center;
-  background-color: rgb(35, 30, 91);
+  background-color: rgb(41, 33, 119);
+  color: rgb(89, 67, 233);
   width: 100%;
 }
 
@@ -87,8 +102,8 @@ border: 3px solid #f1f1f1;
 .btn {
   padding: 0.4rem;
   /* position: relative; */
-  border: 1px solid rgb(76, 60, 180);
-  background-color: rgb(35, 30, 91);
+  border: 1px color rgb(89, 67, 233);
+  background-color: rgb(41, 33, 119);
 }
 
 .btn:hover {
