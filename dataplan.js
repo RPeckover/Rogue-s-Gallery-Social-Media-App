@@ -50,7 +50,8 @@ let handWrittenPrompts = [
   "Beekeeper who hasn't realised their hive is definitley not bees",
   "Reddit Moderator",
   "Crypto Bro trying to rug pull",
-  "Evil advisor to the sickly king"
+  "Evil advisor to the sickly king",
+  "Mysterious wanderer trying to out-mystery everyone"
 ];
 
 let adjectives = [
