@@ -59,10 +59,17 @@ let handWrittenPrompts = [
   "Inventor who keeps accidenttally recreating commonly available devices",
   "Best man delivering an increasingly concerning wedding speech",
   "Person at the watercooler trying to outdo everyone with how cool their weekend was",
-  "Lottery winner trying to keep it on the downlow"
+  "Lottery winner trying to keep it on the downlow",
+  "Person who's having an intense trip",
+  "Spam bots",
+  "Debater 'playing devils advocate' but clearly on the side of the devil",
+  "Cult recruiters trying to out-recruit all others",
+  "Self-Proclaimed Empath",
+  "Celebrity issuing a vague apology clearly written by a PR team",
+  "Person with poor reading comprehension"
 ];
 
-let adjectives = [
+let descriptors = [
   "Unlucky",
   "Fearsome",
   "Anxious",
@@ -149,7 +156,76 @@ let adjectives = [
   "Self-Contradicting",
   "Barely-Conscious",
   "Rapidly Approaching",
-  "Green"
+  "Green",
+  "Magical",
+  "Pedantic",
+  "Fraudulent",
+  "So-Called",
+  "Alleged",
+  "Self-Proclaimed",
+  "Unethical",
+  "Principled",
+  "Humble",
+  "Cheerful",
+  "Optimistic",
+  "Burnt-Out",
+  "Dramatic",
+  "Hysterical",
+  "Thin-Skinned",
+  "Worried",
+  "Vain",
+  "Boastful",
+  "Conniving",
+  "Patronising",
+  "Aloof",
+  "Apathetic",
+  "Timid",
+  "Immature",
+  "Knowledgable",
+  "Insincere",
+  "Morbid",
+  "Jealous",
+  "Petty",
+  "Peaceful",
+  "Aspiring",
+  "Inexperienced",
+  "Cultured",
+  "Dignified",
+  "Capable",
+  "Debonair",
+  "Elegant",
+  "Passionate",
+  "Popular",
+  "Unpopular",
+  "Famous",
+  "Infamous",
+  "Relaxed",
+  "Chill",
+  "Respectful",
+  "Sentimental",
+  "Buisnesslike",
+  "Competitive",
+  "Experimental",
+  "Escaped",
+  "Preachy",
+  "Subversive",
+  "Retired",
+  "Dishonourably Discharged",
+  "Solemn",
+  "Sarcastic",
+  "Performative",
+  "Criminal",
+  "Gullible",
+  "Indecisive",
+  "Naive",
+  "Contrarian",
+  "Opinionated",
+  "Well-Meaning",
+  "Disgraced",
+  "Small-Time",
+  "Big-Shot",
+  "Renowned",
+  "Honourable"
 ];
 
 let nouns = [
@@ -274,7 +350,10 @@ let nouns = [
   "Superhero",
   "Supervillain",
   "Rockstar",
-  "Rival"
+  "Rival",
+  "Scholar",
+  "Poliician",
+  "Cultist"
 ];
 
 // let verbs = ["fighting", ""];
@@ -288,7 +367,7 @@ let nouns = [
 // and then make it always run the code to check the usedPrompts and add new successful prompts to it
 
 let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-let randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+let randomAdjective = descriptors[Math.floor(Math.random() * descriptors.length)];
 
 let promptOne = randomAdjective + " " + randomNoun;
 let promptTwo = randomNoun + " " + randomNoun + " " + fusion;
@@ -301,5 +380,6 @@ let promptTwo = randomNoun + " " + randomNoun + " " + fusion;
 let todaysPrompt = "";
 // maybe title this userPrompt? Sometimes all users get the same prompt, sometimes users get different individualised ones
 
-
 //Maybe delete uploads folder? doesn't seem necessary if images are just for pfps but maybe I am wrong
+
+// Displays users as either - [Username] The [Prompt] OR [Username] subheading: [Prompt]
