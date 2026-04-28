@@ -36,8 +36,8 @@ let handWrittenPrompts = [
   "Pirate Captain Desperately trying to impress his crew",
   "Robot increasingly anxious about mysterious bolt that fell off of their body",
   "Door to door ice salesman in the Sahara desert",
-  "Hero [blank], Savior of The Realm",
-  "Dastardly Derek, villain of despair",
+  "The chosen one of legend, convinced all others are fakes",
+  "Villain giving their evil speech moments before being thwarted",
   "Lost dad who is sure he can find his way home without directions",
   "A sad but slightly threatening Clown",
   "Dragon that lost their horde in a stock market crash",
@@ -51,7 +51,13 @@ let handWrittenPrompts = [
   "Reddit Moderator",
   "Crypto Bro trying to rug pull",
   "Evil advisor to the sickly king",
-  "Mysterious wanderer trying to out-mystery everyone"
+  "Mysterious wanderer trying to out-mystery everyone",
+  "Person who doesn't realise they're clearly haunted",
+  "Courtroom witness who is fuzzy on ALL details",
+  "Widow who definatley killed her husband",
+  "Inventor who keeps accidenttally recreating commonly available devices",
+  "Best man delivering an increasingly concerning wedding speech",
+  "Person at the watercooler trying to outdo everyone with how cool their weekend was"
 ];
 
 let adjectives = [
@@ -114,7 +120,34 @@ let adjectives = [
   "Self-Serious",
   "Morose",
   "Post-Apocalyptic",
-  "Cantankerous"
+  "Cantankerous",
+  "Forgetful",
+  "Gout-Addled",
+  "Sinister",
+  "Riddlesome",
+  "Enigmatic",
+  "Sullen",
+  "Reserved",
+  "Time-Travelling",
+  "Tragic",
+  "Lucky",
+  "Snooty",
+  "Uncompromising",
+  "Unsettling",
+  "Polite",
+  "Agreeable",
+  "Classy",
+  "Rambunctious",
+  "Scatterbrained",
+  "Grounded",
+  "Skeptical",
+  "Cynical",
+  "Prideful",
+  "Easily-Persuaded",
+  "Self-Contradicting",
+  "Barely-Conscious",
+  "Rapidly Approaching",
+  "Green"
 ];
 
 let nouns = [
@@ -238,7 +271,8 @@ let nouns = [
   "Paleontologist",
   "Superhero",
   "Supervillain",
-  "Rockstar"
+  "Rockstar",
+  "Rival"
 ];
 
 // let verbs = ["fighting", ""];

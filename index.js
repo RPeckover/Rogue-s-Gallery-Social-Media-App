@@ -18,6 +18,9 @@ const users = require("./models/users.js");
 
 const tenMins = 1000 * 60 * 10;
 const oneHour = 1000 * 60 * 60;
+const oneDay = 1000 * 60 * 60 * 24;
+
+//Make prompts have a maxAge of one day
 
 const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -298,5 +301,6 @@ app.get("/getposts", async (request, response) => {
 
 //NOTABLE ISSUE - you can still post when logged out
 //NOTABLE ISSUE - post time and likes aren't included in posts printed to app
+//Check if these issues are still present ^
 
 //8ff97b1aa81488ca6d4cfa588d4fcf4fdcc15eb6

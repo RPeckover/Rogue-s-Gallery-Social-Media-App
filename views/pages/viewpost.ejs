@@ -3,7 +3,7 @@
     <%- include('../partials/header')%>
     <div class="content-wrapper">
 <main>
-    <h1>Welcome to the app</h1>
+    <h1>Welcome to Rogue's Gallery</h1>
      <h2>Viewing Post</h2>
     <div>
         <!-- DONT WANT IMAGES AS REGULAR USER POSTS, JUST PFP I THINK -->
@@ -11,6 +11,7 @@
                 <img src="<%= post.imagePath %>" alt="" class="post-image-thumbnail">
             <% } else { %>
                 <p>sorry no image available</p>
+                <!-- Review images and how I want to handle them -->
             <% } %>
         <p>
             <%= post.message %>
@@ -18,7 +19,7 @@
         <p>
             <%= post.postedBy %>
         </p>
-        <h4>comments <%= post.comments.length %></h4>
+        <h4>Hecklers (Comments) <%= post.comments.length %></h4>
         <!-- list existing comments -->
         <ul>
             <% post.comments.forEach(comment=>{ %>
@@ -34,13 +35,14 @@
         </ul>
         <!-- form to input new comment -->
         <form action="/comment" method="POST">
-            <label>Add a comment</label><br>
+            <label>Add a Comment</label><br>
             <input type="hidden" id="postid" name="postid" value="<%= post._id %>">
             <input type="text" id="comment" name="comment"><br>
             <input type="submit" value="Comment">
         </form>
-        <a href="/application">back to list</a>
+        <a href="/application">back to post timeline</a>
     </div>
 </div>
 </main>
+</body>
 <%- include('../partials/footer')%>

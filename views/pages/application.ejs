@@ -3,7 +3,7 @@
     <%- include('../partials/header')%>
     <div class="content-wrapper">
 <main>
-    <h1>Welcome to the app</h1>
+    <h1>Welcome to Rogue's Gallery</h1>
     <h4>Username: <%= username %></h4>
     <h2>Create a new post</h2>
     <form action="/newpost" enctype="multipart/form-data" method="POST">
@@ -15,7 +15,6 @@
     </form>
     <hr>
     <h2>Recent Posts</h2>
-    
     <div class="post-container">
         <!-- class allowing posts to display in a user friendly manner -->
     <ul>
@@ -34,11 +33,12 @@
                 </p>
                 <button onclick="location.href='/like?postid=<%= post._id %>'">&#x2665 <%= post.likes%></button>
                 <!-- '&#x2665' is a heart icon -->
-                <a href="/viewpost?postid=<%= post._id %>">viewpost</a>
+                <a href="/viewpost?postid=<%= post._id %>">view post</a>
             </li>
         <% }) %>
     </ul>
     </div>
 </div>
 </main>
+</body>
 <%- include('../partials/footer')%>
