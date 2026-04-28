@@ -22,6 +22,7 @@ const user = {
 };
 
 const oneDay = 1000 * 60 * 60 * 24;
+const oneWeek = 1000 * 60 * 60 * 24 * 7;
 
 let Userprompt = {
   user: userID, //number
@@ -54,10 +55,11 @@ let handWrittenPrompts = [
   "Mysterious wanderer trying to out-mystery everyone",
   "Person who doesn't realise they're clearly haunted",
   "Courtroom witness who is fuzzy on ALL details",
-  "Widow who definatley killed her husband",
+  "Widow who definitely killed her husband",
   "Inventor who keeps accidenttally recreating commonly available devices",
   "Best man delivering an increasingly concerning wedding speech",
-  "Person at the watercooler trying to outdo everyone with how cool their weekend was"
+  "Person at the watercooler trying to outdo everyone with how cool their weekend was",
+  "Lottery winner trying to keep it on the downlow"
 ];
 
 let adjectives = [

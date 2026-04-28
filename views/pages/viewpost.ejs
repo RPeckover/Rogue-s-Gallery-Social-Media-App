@@ -10,7 +10,7 @@
         <% if(post.imagePath){ %>
                 <img src="<%= post.imagePath %>" alt="" class="post-image-thumbnail">
             <% } else { %>
-                <p>sorry no image available</p>
+                <p>No image available</p>
                 <!-- Review images and how I want to handle them -->
             <% } %>
         <p>
@@ -40,9 +40,10 @@
             <input type="text" id="comment" name="comment"><br>
             <input type="submit" value="Comment">
         </form>
-        <a href="/application">back to post timeline</a>
+        <a href="/application">Back to post timeline</a>
     </div>
 </div>
 </main>
+<script src="index.js"></script>
 </body>
 <%- include('../partials/footer')%>

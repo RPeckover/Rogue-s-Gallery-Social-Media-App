@@ -19,6 +19,7 @@ const users = require("./models/users.js");
 const tenMins = 1000 * 60 * 10;
 const oneHour = 1000 * 60 * 60;
 const oneDay = 1000 * 60 * 60 * 24;
+const oneWeek = 1000 * 60 * 60 * 24 * 7;
 
 //Make prompts have a maxAge of one day
 
@@ -261,7 +262,7 @@ app.post("/newpost", checkLoggedIn, upload.single("myImage"), async (request, re
   console.log(request.file);
   let filename = null;
   if (request.file && request.file.filename) {
-    //check file exists and has a file name
+    //checks file exists and has a file name
     filename = "uploads/" + request.file.filename;
   }
   postData.addNewPost(request.session.userid, request.body, filename);

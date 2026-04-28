@@ -33,12 +33,13 @@
                 </p>
                 <button onclick="location.href='/like?postid=<%= post._id %>'">&#x2665 <%= post.likes%></button>
                 <!-- '&#x2665' is a heart icon -->
-                <a href="/viewpost?postid=<%= post._id %>">view post</a>
+                <a href="/viewpost?postid=<%= post._id %>">View post</a>
             </li>
         <% }) %>
     </ul>
     </div>
 </div>
 </main>
+<script src="index.js"></script>
 </body>
 <%- include('../partials/footer')%>
