@@ -3,14 +3,14 @@
     <%- include('../partials/header')%>
     <div class="content-wrapper">
 <main>
-    <h1>Welcome to Rogue's Gallery</h1>
+    <!-- <h1>Rogue's Gallery</h1> -->
     <h4>Username: <%= username %></h4>
     <h2>Create a new post</h2>
     <form action="/newpost" enctype="multipart/form-data" method="POST">
         <label>Message</label><br>
+        <input required type="text" id="message" name="message"><br>
+        <label>Image</label><br>
         <input type="file" name="myImage" accept="image/*"><br>
-        <input type="text" id="message" name="message"><br>
-        <!-- Make one of two of the inputs (image or text) required -->
         <input type="submit" value="Post">
     </form>
     <hr>

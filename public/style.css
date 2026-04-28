@@ -50,6 +50,8 @@ body {
 
 img {
   margin: 10px;
+  width: 100%;
+  /* allows for responsive scaling */
 }
 
 .full-nav {
@@ -70,9 +72,9 @@ h1 {
   margin: 20px;
 }
 
-/* h2 {
-
-} */
+h2 {
+  text-align: center;
+}
 
 .purple-text {
   color: rgb(97, 74, 247);
@@ -88,6 +90,10 @@ a {
   color: rgb(97, 74, 247);
 }
 
+input {
+  margin: 5px 0px 5px 0px;
+}
+
 /* form {
 border: 3px solid #f1f1f1; 
 } */
@@ -95,6 +101,7 @@ border: 3px solid #f1f1f1;
 .container {
   display: grid;
 }
+/* ^ Check if this class will be necessary in EJS views */
 
 .footer {
   flex-shrink: 0;

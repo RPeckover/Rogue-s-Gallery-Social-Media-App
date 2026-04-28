@@ -31,7 +31,7 @@ let Userprompt = {
   expiresIn: oneDay,
 };
 
-let usedPrompts = {};
+let usedPrompts = [];
 
 let handWrittenPrompts = [
   "Pirate Captain Desperately trying to impress his crew",
@@ -359,7 +359,7 @@ let nouns = [
 // let verbs = ["fighting", ""];
 
 // const promptSelectArray = [
-//   promptSelectOne() { let promptOne = randomAdjective.concat(" ", randomNoun) },
+//   promptSelectOne() { let promptOne = randomDescriptor.concat(" ", randomNoun) },
 //   promptSelectTwo()  {},
 //   promptSelectThree() {}
 // ];
@@ -367,9 +367,9 @@ let nouns = [
 // and then make it always run the code to check the usedPrompts and add new successful prompts to it
 
 let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-let randomAdjective = descriptors[Math.floor(Math.random() * descriptors.length)];
+let randomDescriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
 
-let promptOne = randomAdjective + " " + randomNoun;
+let promptOne = randomDescriptor + " " + randomNoun;
 let promptTwo = randomNoun + " " + randomNoun + " " + fusion;
 // test to see if this just will print two of the same nouns
 
