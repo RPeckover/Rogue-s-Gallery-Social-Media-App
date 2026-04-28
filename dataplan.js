@@ -33,9 +33,11 @@ let Userprompt = {
 
 let usedPrompts = [];
 
+// let communalPrompts = []
+
 let handWrittenPrompts = [
   "Pirate Captain Desperately trying to impress his crew",
-  "Robot increasingly anxious about mysterious bolt that fell off of their body",
+  "Robot increasingly anxious about a mysterious bolt that fell off of their body",
   "Door to door ice salesman in the Sahara desert",
   "The chosen one of legend, convinced all others are fakes",
   "Villain giving their evil speech moments before being thwarted",
