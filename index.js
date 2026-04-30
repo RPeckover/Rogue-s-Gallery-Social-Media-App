@@ -29,14 +29,12 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
 require("dotenv").config();
-// const mongoDBPassword=process.env.MONGODBPASSWORD
-// const myUniqueDatabase="RoshanApp"
+const mongoDBPassword=process.env.MONGODB_PASSWORD;
+const myDatabase="RoshanApp";
 
 const mongoose = require("mongoose");
-const connectionString = ``;
+const connectionString = `mongodb+srv://CCO6005-00:${mongoDBPassword}@cluster0.lpfnqqx.mongodb.net/${myDatabase}?retryWrites=true&w=majority`;
 mongoose.connect(connectionString);
-//OI - GET .ENV WORKING AND FIX CONNECTION STRING 
-
 
 const postData = require("./models/post-data.js");
 
