@@ -33,9 +33,10 @@ require("dotenv").config();
 // const myUniqueDatabase="RoshanApp"
 
 const mongoose = require("mongoose");
-const connectionString = `mongodb+srv://CCO6005-00:black.D0g@cluster0.lpfnqqx.mongodb.net/RoshanApp?retryWrites=true&w=majority`;
+const connectionString = ``;
 mongoose.connect(connectionString);
-//OI - GET .ENV WORKING AND FIX CONNECTION STRING
+//OI - GET .ENV WORKING AND FIX CONNECTION STRING 
+
 
 const postData = require("./models/post-data.js");
 
