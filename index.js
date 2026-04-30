@@ -30,7 +30,7 @@ app.use(cookieParser());
 
 require("dotenv").config();
 const mongoDBPassword=process.env.MONGODB_PASSWORD;
-const myDatabase="RoshanApp";
+const myDatabase="roshan_blog";
 
 const mongoose = require("mongoose");
 const connectionString = `mongodb+srv://CCO6005-00:${mongoDBPassword}@cluster0.lpfnqqx.mongodb.net/${myDatabase}?retryWrites=true&w=majority`;
@@ -243,6 +243,8 @@ app.post("/login", async (request, response) => {
     response.redirect("/loginfailed.html");
   }
 });
+// Something about this isn't working as registering the same user twice gives an error (as expected) but logging in as that existing user returns 'no such user'
+
 
 app.post("/post", (request, response) => {
   console.log(request.body);
