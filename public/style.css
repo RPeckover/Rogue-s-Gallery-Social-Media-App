@@ -50,6 +50,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
 }
 
 img {
@@ -58,7 +59,11 @@ img {
   /* allows for responsive scaling */
 }
 
-.full-nav {
+/* .full-nav {
+  color: rgb(97, 74, 247);
+} */
+
+.nav-link {
   color: rgb(97, 74, 247);
 }
 
@@ -91,11 +96,12 @@ p {
 }
 
 a {
-  color: rgb(97, 74, 247);
+  color: rgb(41, 33, 119);
 }
 
 input {
   margin: 5px 0px 5px 0px;
+  font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
 }
 
 /* form {
@@ -128,13 +134,16 @@ border: 3px solid #f1f1f1;
 .btn {
   padding: 0.4rem;
   /* position: relative; */
-  border: 1px color rgb(97, 74, 247);
+  border: 2px outset;
+  border-color: rgb(97, 74, 247);
   background-color: rgb(41, 33, 119);
+  color: rgb(97, 74, 247);
 }
 
 .btn:hover {
-  background-color: rgb(33, 24, 138);
-  color: rgb(91, 80, 222);
+  background-color: rgb(41, 33, 100);
+  color: rgb(91, 80, 200);
+  border: 2px inset;
 }
 
 .post-container {
