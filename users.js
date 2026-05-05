@@ -1,6 +1,5 @@
-
 // const users=[
-//     {username:'user1', password:'123', loggedin:true},
+//     {username:'user1', password:'123', loggedin:false},
 //     {username:'user2', password:'123', loggedin:false}
 // ]
 
