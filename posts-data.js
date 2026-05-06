@@ -3,14 +3,17 @@ const {Schema, model} = mongoose;
 
 const postSchema = new Schema({
     postedBy: String,
+    //prompt: String,
     message: String,
     imagePath: String,
     likes: Number,
     time: Date,
     comments: [
         {
-            message: String,
             commentBy: String,
+            //commentPrompt: String,
+            // ^ perhaps workshop a better name 
+            message: String,
             likes: Number
         }
     ]
@@ -21,6 +24,7 @@ const Posts = model('Post', postSchema);
 function addNewPost(userID, post, imageFilename){
     let myPost={
         postedBy: userID,
+        //prompt: currentPrompt,
         message: post.message,
         imagePath: imageFilename,
         likes: 0,
@@ -65,8 +69,9 @@ async function likePost(postID){
 
 async function commentOnPost(postID, commentText, commentBy){
     let newComment={
-        message: commentText,
         commentBy: commentBy,
+        //prompt: currentPrompt,
+        message: commentText,
         likes: 0
     }
     await Posts.findOneAndUpdate({_id:postID}, {$push: {comments: newComment}})

@@ -90,7 +90,7 @@ h2 {
 }
 
 p {
-  margin: 20px 5px 20px 15px;
+  /* margin: 20px 5px 20px 15px; */
   /* text-align: center; */
   font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
 }
@@ -134,7 +134,7 @@ border: 3px solid #f1f1f1;
 .btn {
   padding: 0.4rem;
   /* position: relative; */
-  border: 2px outset;
+  border: 3px outset;
   border-color: rgb(97, 74, 247);
   background-color: rgb(41, 33, 119);
   color: rgb(97, 74, 247);
@@ -143,7 +143,7 @@ border: 3px solid #f1f1f1;
 .btn:hover {
   background-color: rgb(41, 33, 100);
   color: rgb(91, 80, 200);
-  border: 2px inset;
+  border: 3px inset;
 }
 
 .post-container {
