@@ -234,6 +234,7 @@ app.post("/login", async (request, response) => {
           // "pages/application" for EJS?
         } else {
           console.log("password wrong");
+          console.log(`${userData.password}`);
           response.redirect("/loginfailed.html");
         }
       }
