@@ -99,9 +99,12 @@ input {
   font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
 }
 
-/* form {
-border: 3px solid #f1f1f1; 
+/* input[type="file"] {
+  display: inline-block;
+  margin: 0 auto;
 } */
+
+/* ^ Attempt to fix the file inputs not centering */
 
 .container {
   display: grid;
@@ -145,8 +148,9 @@ border: 3px solid #f1f1f1;
   border: 3px inset;
 }
 
-.post-container {
-  display: flex;
+.post-timeline-container {
+  display: grid;
+  grid-template-columns: 5fr;
   justify-content: center;
   border: 4px groove;
   border-color: grey;
