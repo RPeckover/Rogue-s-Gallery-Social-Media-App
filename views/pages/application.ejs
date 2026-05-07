@@ -3,16 +3,19 @@
     <%- include('../partials/header')%>
     <div class="content-wrapper">
 <main>
-    <!-- <h1>Rogue's Gallery</h1> -->
-    <h4>Username: <%= username %></h4>
+    <!-- <h4>Username: <%= username %></h4> -->
+    <div class="post-maker-container">
     <h2>Create a new post</h2>
     <form action="/newpost" enctype="multipart/form-data" method="POST">
-        <label>Message</label><br>
+        <label>Add Text:</label><br>
         <input required type="text" id="message" name="message"><br>
-        <label>Image</label><br>
+        <label>Add Image:</label><br>
         <input type="file" name="myImage" accept="image/*"><br>
-        <input type="submit" value="Post">
+        <input class="btn" type="submit" value="Post">
     </form>
+    </div>
+    <!-- End of post maker -->
+    <br>
     <hr>
     <h2>Recent Posts</h2>
     <div class="post-container">

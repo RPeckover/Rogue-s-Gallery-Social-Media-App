@@ -46,6 +46,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   background-color: rgb(87, 129, 172);
   height: 100%;
   padding: 0;
@@ -67,14 +68,6 @@ img {
   color: rgb(97, 74, 247);
 }
 
-/* body > footer {
-  margin: 0px;
-  padding: 0px;
-  min-width: 100%;
-  max-width: 100%;
-  height: auto;
-} */
-
 h1 {
   font-family: "Kumar One Outline", system-ui;
   color: rgb(97, 74, 247);
@@ -85,13 +78,15 @@ h2 {
   text-align: center;
 }
 
+h4 {
+  text-align: center;
+}
+
 .purple-text {
   color: rgb(97, 74, 247);
 }
 
 p {
-  /* margin: 20px 5px 20px 15px; */
-  /* text-align: center; */
   font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
 }
 
@@ -129,6 +124,7 @@ border: 3px solid #f1f1f1;
   margin: 0 auto;
   /* allows for dynamic centering via the browser */
   height: auto;
+  text-align: center;
 }
 
 .btn {
@@ -138,6 +134,9 @@ border: 3px solid #f1f1f1;
   border-color: rgb(97, 74, 247);
   background-color: rgb(41, 33, 119);
   color: rgb(97, 74, 247);
+  margin: 10px;
+  /* align-self: center; */
+  /* margin: 0 auto; */
 }
 
 .btn:hover {
@@ -149,7 +148,23 @@ border: 3px solid #f1f1f1;
 .post-container {
   display: flex;
   justify-content: center;
+  border: 4px groove;
+  border-color: grey;
   /* text-align: center; */
+}
+
+.post-maker-container {
+  box-shadow: 0 4px 8px 0 rgba(85, 6, 97, 0.4);
+  transition: 0.3s;
+  border: 4px dashed;
+  border-top: 20px solid;
+  border-color: rgb(41, 33, 119);
+  margin: 20px 5px 0px 5px;
+  padding: 0px 0px 10px 0px;
+}
+
+.post-maker-container:hover {
+  box-shadow: 0 8px 15px 0 rgba(85, 6, 97, 0.4);
 }
 
 .login-form {
