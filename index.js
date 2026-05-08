@@ -119,6 +119,7 @@ app.get("/application", checkLoggedIn, async (request, response) => {
   // response.redirect('./application.html')
   response.render("pages/application", {
     username: request.session.userid,
+    // ADD this to relevent pages so that username is displayed!
     isLoggedIn: checkLoggedInState(request),
     postData: await postData.getPosts(5),
   });
