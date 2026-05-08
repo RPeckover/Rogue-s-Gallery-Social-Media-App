@@ -115,6 +115,7 @@ function checkLoggedInState(request) {
   return request.session && request.session.userid;
 }
 
+// application EJS page view
 app.get("/application", checkLoggedIn, async (request, response) => {
   // response.redirect('./application.html')
   response.render("pages/application", {
@@ -125,6 +126,7 @@ app.get("/application", checkLoggedIn, async (request, response) => {
   });
 });
 
+// viewpost EJS page view
 app.get("/viewpost", checkLoggedIn, async (request, response) => {
   // response.redirect('./application.html')
   let postID = request.query.postid; //'66321bf0fdfeacf1d9fb6e88'
@@ -133,11 +135,13 @@ app.get("/viewpost", checkLoggedIn, async (request, response) => {
   // console.log(retrievedPost)
   //Above lines are for testing ^
   response.render("pages/viewpost", {
+    username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
     post: await postData.getPost(postID),
   });
 });
 
+// post liking functionality
 app.get("/like", checkLoggedIn, async (request, response) => {
   let postID = request.query.postid;
   await postData.likePost(postID);
@@ -147,7 +151,10 @@ app.get("/like", checkLoggedIn, async (request, response) => {
     postData: await postData.getPosts(5),
   });
 });
+// NOTE - CURRENTLY USER CAN LIKE A POST MULTIPLE TIMES BY REFRESHING THE PAGE OR LOGGING OUT AND IN
 
+
+// add comment functionality
 app.post("/comment", checkLoggedIn, async (request, response) => {
   // let postID=request.query.postid
   await postData.commentOnPost(
@@ -161,24 +168,31 @@ app.post("/comment", checkLoggedIn, async (request, response) => {
   });
 });
 
+// register EJS page view
 app.get("/register", (request, response) => {
   response.render("pages/register", {
     isLoggedIn: checkLoggedInState(request),
   });
 });
 
+// logout EJS page view
 app.get("/logout", (request, response) => {
   response.render("pages/logout", {
+    username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
   });
 });
 
+// profile EJS page view
 app.get("/profile", (request, response) => {
   response.render("pages/profile", {
+    username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
   });
 });
+// NOTE - CURRENTLY USERS NOT LOGGED IN CAN ACCESS THIS URL AND 'EDIT THEIR PROFILE'
 
+// login EJS page view
 app.get("/login", (request, response) => {
   response.render("pages/login", {
     isLoggedIn: checkLoggedInState(request),
@@ -193,8 +207,10 @@ app.post("/logout", async (request, response) => {
   response.redirect("./");
 });
 
+// about EJS page view
 app.get("/about", (request, response) => {
   response.render("pages/about", {
+    username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
   });
 });
@@ -206,6 +222,7 @@ app.get("/about", (request, response) => {
 //   response.redirect("./loggedout.html");
 // });
 
+// new user register functionality
 app.post("/register", async (request, response) => {
   console.log(request.body);
   let userData = request.body;
@@ -223,6 +240,7 @@ app.post("/register", async (request, response) => {
   console.log(await users.getUsers());
 });
 
+// login functionality
 app.post("/login", async (request, response) => {
   console.log(request.body);
   let userData = request.body;
@@ -251,9 +269,6 @@ app.post("/login", async (request, response) => {
     response.redirect("/loginfailed.html");
   }
 });
-// Something about this isn't working as registering the same user twice gives an error (as expected) but logging in as that existing user returns 'no such user'
-
-
 app.post("/post", (request, response) => {
   console.log(request.body);
 });
@@ -265,13 +280,14 @@ app.post("/post", (request, response) => {
 //   response.redirect("./application.html");
 // });
 
+// post creation functionality
 app.post("/newpost", checkLoggedIn, upload.single("myImage"), async (request, response) => {
   console.log(request.body);
   console.log(request.session.userid);
   console.log(request.file);
   let filename = null;
   if (request.file && request.file.filename) {
-    //checks file exists and has a file name
+    // checks file exists and has a file name
     filename = "uploads/" + request.file.filename;
   }
   postData.addNewPost(request.session.userid, request.body, filename);
@@ -281,11 +297,13 @@ app.post("/newpost", checkLoggedIn, upload.single("myImage"), async (request, re
     postData: await postData.getPosts(5),
   });
 });
-//I DONT WANT USERS MAKING IMAGE POSTS REGULARLY (I DON'T THINK) ASK ABOUT THIS
+// NOTE - CURRENTLY USER CAN REFRESH NEWPOST URL TO SPAM POST, ALSO REMOVE IMAGE POSTS 
 
+// post/timeline display functionality
 app.get("/getposts", async (request, response) => {
   response.json({ posts: await postData.getPosts(5) });
 });
+// add ability to go to another page with further posts and curate the main timeline more to whoever is being followed by the logged in user
 
 // function checkLoggedIn(request, response, nextAction) {
 //   if (request.session) {
