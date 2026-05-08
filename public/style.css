@@ -123,7 +123,7 @@ input {
 .content-wrapper {
   flex: 1 0 auto;
   max-width: 1280px;
-  /* contrains the width of the container to 1280px */
+  /* contrains the width of the container to 1280px ISSUES WITH ABOUT PAGE DISPLAYING ARE CONNECTED TO THIS*/
   margin: 0 auto;
   /* allows for dynamic centering via the browser */
   height: auto;

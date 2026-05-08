@@ -193,6 +193,12 @@ app.post("/logout", async (request, response) => {
   response.redirect("./");
 });
 
+app.get("/about", (request, response) => {
+  response.render("pages/about", {
+    isLoggedIn: checkLoggedInState(request),
+  });
+});
+
 // app.post("/logout", (request, response) => {
 //   users.setLoggedIn(request.session.userid, false);
 //   request.session.destroy();
