@@ -34,6 +34,7 @@ function addNewPost(userID, post, imageFilename){
     Posts.create(myPost)
         .catch(err=>{
             console.log("Error: "+err)
+            // add in 'error.png' as part of a popover / callout as user feedback?
         })
     // posts.unshift(myPost)
 }

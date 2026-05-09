@@ -184,13 +184,13 @@ app.get("/logout", (request, response) => {
 });
 
 // profile EJS page view
-app.get("/profile", (request, response) => {
+app.get("/profile", checkLoggedIn, async (request, response) => {
   response.render("pages/profile", {
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
   });
 });
-// NOTE - CURRENTLY USERS NOT LOGGED IN CAN ACCESS THIS URL AND 'EDIT THEIR PROFILE'
+// FIXED - USERS PREVIOUSLY NOT LOGGED IN COULD ACCESS THE PROFILE URL AND 'EDIT THEIR PROFILE', ADDING 'checkLoggedIn, async' TO 'app.get()' resolved this issue, comment included for reference if issue arises elsewhere
 
 // login EJS page view
 app.get("/login", (request, response) => {
@@ -199,7 +199,7 @@ app.get("/login", (request, response) => {
   });
 });
 
-//controller for logout
+// controller for logout
 app.post("/logout", async (request, response) => {
   // users.setLoggedIn(request.session.userid,false)
   request.session.destroy();
@@ -233,9 +233,10 @@ app.post("/register", async (request, response) => {
       status: "failed",
       error: "user exists",
     });
+    // Why use console.log in some places, 'catch' in 'posts-data.js' and response.json in others
   } else {
     await users.newUser(userData.username, userData.password);
-    response.redirect("/application");
+    response.redirect("/application"); 
   }
   console.log(await users.getUsers());
 });
@@ -256,17 +257,20 @@ app.post("/login", async (request, response) => {
           console.log("password matches");
           request.session.userid = userData.username;
           response.redirect("/application");
-          // "pages/application" for EJS?
         } else {
-          console.log("password wrong");
+          console.log("incorrect password");
           console.log(`${userData.password}`);
           response.redirect("/loginfailed.html");
+          // Replace html page ^
+          // Maybe redirect user to login page but also trigger a popover / callout letting the user know the login failed
         }
       }
     );
   } else {
     console.log("no such user");
     response.redirect("/loginfailed.html");
+    // Replace html page ^
+    // Maybe redirect user to login page but also trigger a popover / callout letting the user know the login failed
   }
 });
 app.post("/post", (request, response) => {
