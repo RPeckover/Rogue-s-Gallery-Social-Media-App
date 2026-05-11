@@ -38,6 +38,8 @@ function addNewPost(userID, post, imageFilename){
         })
     // posts.unshift(myPost)
 }
+// NOTE - CURRENTLY USER CAN LIKE A POST MULTIPLE TIMES BY REFRESHING THE PAGE OR LOGGING OUT AND IN
+// add user PFP to posts
 
 async function getPosts(n=3){
     let data=[]
@@ -62,11 +64,13 @@ async function getPost(postID){
     return foundPost
 }
 
+// like functionality
 async function likePost(postID){
     await Posts.findOneAndUpdate({_id:postID}, {$inc: {likes: 1}})
     //Mongoose method for modifying and incrementing data
         .exec()
 }
+// UPDATE THIS TO PREVENT USER FROM BEING ABLE TO INCREMENT LIKES INFINITLEY
 
 async function commentOnPost(postID, commentText, commentBy){
     let newComment={

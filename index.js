@@ -141,7 +141,7 @@ app.get("/viewpost", checkLoggedIn, async (request, response) => {
   });
 });
 
-// post liking functionality
+// post liking functionality (paired with the likePost function found in 'posts-data.js')
 app.get("/like", checkLoggedIn, async (request, response) => {
   let postID = request.query.postid;
   await postData.likePost(postID);

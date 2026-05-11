@@ -1,3 +1,5 @@
+// update this functionality via mongoose schema etc to create a more complex user data object to account for PFP etc?
+
 const users=[
     {username:'user1', password:'123', loggedin:false},
     {username:'user2', password:'123', loggedin:false}
