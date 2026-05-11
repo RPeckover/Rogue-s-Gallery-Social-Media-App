@@ -188,4 +188,14 @@ input {
   /* justify-content: center; */
 }
 
+.timeline-nav-container {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0px 0px 0px;
+}
+
+.timeline-nav-container button {
+  font-size: 2rem;
+}
+
 /* Darkmode with switch between dark and light? */
