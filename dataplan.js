@@ -24,10 +24,13 @@ const user = {
 const oneDay = 1000 * 60 * 60 * 24;
 const oneWeek = 1000 * 60 * 60 * 24 * 7;
 
+const currentTime = Date.now();
+
+// Outline of a potential prompt Schema 
 let Userprompt = {
   user: userID, //number
   timeposted: Date.now(), //date
-  post,
+  post, // is this reffering to associated posts? If so wouldn't it be easier to include in the post data 
   expiresIn: oneDay,
 };
 

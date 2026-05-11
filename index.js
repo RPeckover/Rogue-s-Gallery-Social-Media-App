@@ -89,7 +89,7 @@ app.post("/profile-edit", upload.single("avatar"), function (req, res) {
 app.use(
   sessions({
     secret: "a secret that only i know",
-    // Replace with .env
+    // Replace with .env - What exactly is this used for here? Currently ENV only stores the key needed for compass etc, what does the session need to store that is anonymous?
     saveUninitialized: true,
     cookie: { maxAge: tenMins },
     resave: false,
@@ -203,7 +203,7 @@ app.get("/login", (request, response) => {
 app.post("/logout", async (request, response) => {
   // users.setLoggedIn(request.session.userid,false)
   request.session.destroy();
-  console.log(await users.getUsers());
+  console.log(await users.getUsers()); // THIS IS USEFUL FOR TESTING BUT SHOULD BE REMOVED IN FINAL VERSION FOR SECURITY REASONS
   response.redirect("./");
 });
 
