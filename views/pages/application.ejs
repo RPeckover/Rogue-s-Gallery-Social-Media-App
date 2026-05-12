@@ -8,8 +8,8 @@
     <form action="/newpost" enctype="multipart/form-data" method="POST">
         <label>Add Text:</label><br>
         <input required type="text" id="message" name="message"><br>
-        <label>Add Image:</label><br>
-        <input type="file" name="myImage" accept="image/*"><br>
+        <!-- <label>Add Image:</label><br>
+        <input type="file" name="myImage" accept="image/*"><br> -->
         <input class="btn" type="submit" value="Post">
     </form>
     </div>
@@ -22,16 +22,16 @@
     <ul>
         <% postData.forEach(post=>{ %>
             <li>
-                <% if(post.imagePath){ %>
+                <!-- <% if(post.imagePath){ %>
                         <img src="<%= post.imagePath %>" alt="" class="post-image-thumbnail">
                     <% } else { %>
                         <p>sorry no image available</p>
-                    <% } %>
-                <p>
-                    <%= post.message %>
-                </p>
+                    <% } %> -->
                 <p>
                     <%= post.postedBy %>
+                </p>
+                <p>
+                    <%= post.message %>
                 </p>
                 <button onclick="location.href='/like?postid=<%= post._id %>'">&#x2665 <%= post.likes%></button>
                 <!-- '&#x2665' is a heart icon -->

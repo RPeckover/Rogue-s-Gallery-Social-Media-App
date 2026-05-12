@@ -371,6 +371,8 @@ let nouns = [
 
 // and then make it always run the code to check the usedPrompts and add new successful prompts to it
 
+// CODE - MAKE A FUNCTION THAT CHECKS TIME STAMP OF CURRENT PROMPT, UPDATES IT AFTER 24 HOURS VIA 
+
 let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
 let randomDescriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
 

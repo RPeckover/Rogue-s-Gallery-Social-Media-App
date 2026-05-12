@@ -183,7 +183,7 @@ input {
 }
 /* SEE IF THE ABOVE IS NEEDED ^ */
 
-.profile-form {
+.profile-form-container {
   display: inline-block;
   /* justify-content: center; */
 }

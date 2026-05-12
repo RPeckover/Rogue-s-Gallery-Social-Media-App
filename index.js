@@ -42,10 +42,14 @@ const multer = require("multer");
 const upload = multer({ dest: "./public/uploads" });
 //Error with upload 'destination never read'
 
-app.post("/profile-edit", upload.single("avatar"), function (req, res) {
-  // req.file is the name of your file in the form above, here 'uploaded_file'
-  // req.body holds all text fields
-  console.log(req.file, req.body);
+// edit profile functionality
+app.post("/profile-edit", checkLoggedIn, upload.single("avatar"), async (request, response) => {
+    console.log(request.body, request.file, request.session.userid);
+    let filename = null;
+     if (request.file && request.file.filename) {
+    // checks file exists and has a file name
+    filename = "uploads/" + request.file.filename;
+  }
 });
 
 //Add email verification with sendgrid etc! - DON'T DO THIS
@@ -151,7 +155,7 @@ app.get("/like", checkLoggedIn, async (request, response) => {
     postData: await postData.getPosts(5),
   });
 });
-// NOTE - CURRENTLY USER CAN LIKE A POST MULTIPLE TIMES BY REFRESHING THE PAGE OR LOGGING OUT AND IN
+// NOTE - CURRENTLY USER CAN LIKE A POST MULTIPLE TIMES BY REFRESHING THE PAGE OR JUST CLICKING MULTIPLE TIMES
 
 
 // add comment functionality
@@ -285,16 +289,10 @@ app.post("/post", (request, response) => {
 // });
 
 // post creation functionality
-app.post("/newpost", checkLoggedIn, upload.single("myImage"), async (request, response) => {
+app.post("/newpost", checkLoggedIn, async (request, response) => {
   console.log(request.body);
   console.log(request.session.userid);
-  console.log(request.file);
-  let filename = null;
-  if (request.file && request.file.filename) {
-    // checks file exists and has a file name
-    filename = "uploads/" + request.file.filename;
-  }
-  postData.addNewPost(request.session.userid, request.body, filename);
+  postData.addNewPost(request.session.userid, request.body);
   response.render("pages/application", {
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
@@ -302,6 +300,7 @@ app.post("/newpost", checkLoggedIn, upload.single("myImage"), async (request, re
   });
 });
 // NOTE - CURRENTLY USER CAN REFRESH NEWPOST URL TO SPAM POST, ALSO REMOVE IMAGE POSTS 
+// Text no longer appearing after having removed images as a part of posts
 
 // post/timeline display functionality
 app.get("/getposts", async (request, response) => {

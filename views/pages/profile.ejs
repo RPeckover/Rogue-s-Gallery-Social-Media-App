@@ -4,19 +4,19 @@
     <div class="content-wrapper">
 <main>
     <h2>Welcome to your dressing room</h2>
+    <div class="profile-form-container">
     <h4>Profile info</h4>
     <form action="/profile-edit" method="post" enctype="multipart/form-data">
-      <div class="profile-form">
         <label for="avatar">Update profile picture:</label>
-        <input type="file" name="avatar" />
+        <input type="file" name="avatar" accept="image/*">
         <br>
         <label for="username">Change username:</label>
-        <input type="text" placeholder="Username" name="username" />
+        <input type="text" placeholder="Username" name="username">
         <br>
         <label for="password">Change password:</label>
-        <input type="text" placeholder="Password" name="password" />
+        <input type="text" placeholder="Password" name="password">
         <br>
-        <input type="submit" class="btn" value="Submit changes" />
+        <input type="submit" class="btn" value="Submit changes">
         <!-- Add classes to the inputs? -->
       </div>
     </form>
