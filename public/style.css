@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
 
 header {
-  width: 100%;
+  /* width: 100%; */
   /* margin: 0%;
   padding: 0%;
   height: 100vh; */
@@ -12,6 +12,7 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.5);
+  min-height: 50px;
 }
 
 header h1 {
@@ -48,10 +49,14 @@ body {
   flex-direction: column;
   flex-wrap: wrap;
   background-color: rgb(87, 129, 172);
-  height: 100%;
   padding: 0;
   margin: 0;
   font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
 
 img {
@@ -112,17 +117,19 @@ input {
 /* ^ Attempt to fix the file inputs not centering */
 
 .container {
+  min-height: 100%;
   display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 /* ^ Check if this class will be necessary in EJS views */
 
-.footer {
+footer {
   flex-shrink: 0;
   text-align: center;
   background-color: rgb(41, 33, 119);
   color: rgb(97, 74, 247);
   font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
-  width: 100%;
+  min-height: 50px;
 }
 
 .content-wrapper {
