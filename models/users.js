@@ -5,7 +5,7 @@ const userSchema = new Schema({
   password: String,
   loggedin: Boolean,
   bio: String,
-  profileicon: String, //IS THIS CORRECT DATA TYPE / OK tO PUt HERE?
+  avatar: String, // check this
 });
 
 //import bcrypt

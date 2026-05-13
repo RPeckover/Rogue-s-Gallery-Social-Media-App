@@ -264,16 +264,14 @@ app.post("/login", async (request, response) => {
         } else {
           console.log("incorrect password");
           console.log(`${userData.password}`);
-          response.redirect("/loginfailed.html");
-          // Replace html page ^
+          response.redirect("/login");
           // Maybe redirect user to login page but also trigger a popover / callout letting the user know the login failed
         }
       }
     );
   } else {
     console.log("no such user");
-    response.redirect("/loginfailed.html");
-    // Replace html page ^
+    response.redirect("/login");
     // Maybe redirect user to login page but also trigger a popover / callout letting the user know the login failed
   }
 });
