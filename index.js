@@ -121,7 +121,6 @@ function checkLoggedInState(request) {
 
 // application EJS page view
 app.get("/application", checkLoggedIn, async (request, response) => {
-  // response.redirect('./application.html')
   response.render("pages/application", {
     username: request.session.userid,
     // ADD this to relevent pages so that username is displayed!
@@ -132,7 +131,6 @@ app.get("/application", checkLoggedIn, async (request, response) => {
 
 // viewpost EJS page view
 app.get("/viewpost", checkLoggedIn, async (request, response) => {
-  // response.redirect('./application.html')
   let postID = request.query.postid; //'66321bf0fdfeacf1d9fb6e88'
   // console.log(postID)
   //let retrievedPost = await postData.getPost(postID);

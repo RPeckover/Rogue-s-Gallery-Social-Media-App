@@ -4,8 +4,9 @@ const userSchema = new Schema({
   username: String,
   password: String,
   loggedin: Boolean,
-  bio: String,
-  avatar: String, // check this
+  //bio: String,
+  avatar: {type: String, default: "/images/defailtPFP.png"}, // check this
+  usedPrompts: [] // will store prompts to ensure identical prompts aren't served to the same user twice
 });
 
 //import bcrypt
@@ -37,7 +38,8 @@ userSchema.pre("save", function (next) {
 const User = model("MyDemoUser", userSchema);
 
 async function newUser(username, password) {
-  const user = { username: username, password: password, loggedin: false };
+  const user = { username: username, password: password, loggedin: false, avatar:  "/images/defailtPFP.png"}; // check if this or default in schema itself is correct for a default PFP
+  // bio: bio, (Add this above if going ahead with including bios to profiles)
   // users.push(user)
   await User.create(user).catch((err) => {
     console.log("Error:" + err);
