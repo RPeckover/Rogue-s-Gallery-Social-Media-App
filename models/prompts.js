@@ -12,6 +12,11 @@ const { getUsers } = require("./users");
 
 // ^ All of the above commented out as PROMPT IS PARTT OF USER SCHEMA CURRENTLY
 
+// INTENDED FUNCTIONALITY OF THE BELOW FUNCTION
+// Every 24 hours add current prompt ('promptText' in user schema) to 'usedPrompts' array (also in user schema), randomise a number, 
+// pass it to a switch statement which selects one of a range of methods of concatenating nouns and descriptors to create a new prompt. 
+// If this new prompt is the same as any in the user's 'usedPrompt' array, rerun the function.
+
 // function constructing a new prompt for each user every 24 hours
 async function newPrompt() {
 
@@ -386,7 +391,7 @@ getUsers();
 if (usedPrompts.includes(promptText)) {
     newPrompt();
 }
-// ^ reruns function if  
+// ^ reruns function if prompt has already been given to user previously 
 
 };
 // IMPORTANT - CURRENTLY THERE CAN BE DESCREPANCIES FROM USER TO USER IN THEIR PROMPT CRERATION TIME, IF WEEKLY UNIVERSAL PROMPTS ARE TO BE IMPLIMENTED, ALL PROMPTS SHOULD REFRESH AT THE SAME TIME
