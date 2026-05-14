@@ -6,6 +6,13 @@ const userSchema = new Schema({
   loggedin: Boolean,
   //bio: String,
   avatar: {type: String, default: "/images/defailtPFP.png"}, // check this
+  currentPrompt: [
+    {  
+      promptText: String,
+      creationTime: {type: Date},
+      currentTime: {type: Date, default: Date.now}
+    }
+  ],
   usedPrompts: [] // will store prompts to ensure identical prompts aren't served to the same user twice
 });
 
