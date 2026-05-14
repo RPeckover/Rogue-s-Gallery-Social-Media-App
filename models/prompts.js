@@ -336,9 +336,16 @@ let nouns = [
 
 // Psuedocode - check 'creationTime' and if its 24 hours past 'currentTime' generate a new prompt by randomising a number to select one of a range of methods of concatenating nouns and descriptors
 
-async function newPrompt(creationTime) {
+async function newPrompt(creationTime) {}
 
-};
+// switch () {
+//     case 1:
+//     let promptMethodOne = randomDescriptor + " " + randomNoun;
+
+//     case 2:
+//     let promptMethodTwo = randomNoun + " " + randomNoun + " " + fusion;
+
+// };
 
 let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
 let randomDescriptor = descriptors[Math.floor(Math.random() * descriptors.length)];

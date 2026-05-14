@@ -165,6 +165,7 @@ app.post("/comment", checkLoggedIn, async (request, response) => {
     request.session.userid
   );
   response.render("pages/viewpost", {
+    username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
     post: await postData.getPost(request.body.postid),
   });
@@ -231,11 +232,6 @@ app.post("/register", async (request, response) => {
   // console.log(userData.username)
   if (await users.findUser(userData.username)) {
     console.log("user exists");
-    response.json({
-      status: "failed",
-      error: "user exists",
-    });
-    // Why use console.log in some places, 'catch' in 'posts-data.js' and response.json in others
   } else {
     await users.newUser(userData.username, userData.password);
     response.redirect("/application"); 
