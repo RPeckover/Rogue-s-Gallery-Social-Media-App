@@ -17,6 +17,9 @@ const { getUsers } = require("./users");
 // pass it to a switch statement which selects one of a range of methods of concatenating nouns and descriptors to create a new prompt. 
 // If this new prompt is the same as any in the user's 'usedPrompt' array, rerun the function.
 
+// every 24 hours generates a new prompt
+setInterval(newPrompt, oneDay);
+
 // function constructing a new prompt for each user every 24 hours
 async function newPrompt() {
 
@@ -348,61 +351,54 @@ async function newPrompt() {
 
 // Psuedocode - check 'creationTime' and if its 24 hours past 'currentTime', add prompt to used prompts, generate a new prompt by randomising a number to select one of a range of methods of concatenating nouns and descriptors
 
-setInterval(newPrompt, oneDay);
-// every 24 hours generates a new prompt
-
 let currentPrompt;
 // declared to allow switch statment to change the variable's value
 
-function newPrompt() {
     userid.usedPrompts.push(promptText);
     // stores expired prompts in the user data object
-    for (usedPrompts; promptText;) {
-        // this seems wrong ^
-        if (usedPrompts.includes(promptText)) {
-            let min = Math.ceil(1);
-            let max = Math.floor(3); 
-            methodNum = Math.floor(Math.random() * (max - min + 1)) + min;
-            switch (methodNum) {
-                //prompt method 1 
-                case 1:
-                    let randomDescriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
-                    let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-                    currentPrompt = randomDescriptor + " " + randomNoun;
-                    // set creation time?
+    while (usedPrompts.includes(promptText)); {
+        let min = Math.ceil(1);
+        let max = Math.floor(3); 
+        methodNum = Math.floor(Math.random() * (max - min + 1)) + min;
+        switch (methodNum) {
+            //prompt method 1 
+            case 1:
+                let randomDescriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
+                let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+                currentPrompt = randomDescriptor + " " + randomNoun;
+                // set creation time?
+            break;
+            //prompt method 2 
+            case 2:
+                let randomNoun1 = nouns[Math.floor(Math.random() * nouns.length)];
+                let randomNoun2 = nouns[Math.floor(Math.random() * nouns.length)];
+                currentPrompt = randomNoun1 + " / " + randomNoun2 + " " + fusion;
+                // set creation time?
+            break;
+            //prompt method 3
+            case 3:
+                let randomDescriptor1 = descriptors[Math.floor(Math.random() * descriptors.length)];
+                let randomDescriptor2 = descriptors[Math.floor(Math.random() * descriptors.length)];
+                let randomNoun3 = nouns[Math.floor(Math.random() * nouns.length)];
+                currentPrompt = randomDescriptor1 + " " + randomDescriptor2 + " " + randomNoun3;
+                // set creation time?
                 break;
-                //prompt method 2 
-                case 2:
-                    let randomNoun1 = nouns[Math.floor(Math.random() * nouns.length)];
-                    let randomNoun2 = nouns[Math.floor(Math.random() * nouns.length)];
-                    currentPrompt = randomNoun1 + " / " + randomNoun2 + " " + fusion;
-                    // set creation time?
-                break;
-                //prompt method 3
-                case 3:
-                    let randomDescriptor1 = descriptors[Math.floor(Math.random() * descriptors.length)];
-                    let randomDescriptor2 = descriptors[Math.floor(Math.random() * descriptors.length)];
-                    let randomNoun3 = nouns[Math.floor(Math.random() * nouns.length)];
-                    currentPrompt = randomDescriptor1 + " " + randomDescriptor2 + " " + randomNoun3;
-                    // set creation time?
-                    break;
-            promptText = currentPrompt;
-            // make promptText = currentPrompt and store in userSchema
-            }
+        promptText = currentPrompt;
+        // make promptText = currentPrompt and store in userSchema
         }
     }
 }
 
-getUsers();
+// getUsers();
 // where do I put this
 
 // psuedocode - return randomised result from switch statment and set its value eaqual to 'promptText' in 'userSchema' found on 'users.js'
 // also set creation time using date.now and make that value equal to 'creationTime' in 'userSchema' 
 
-if (usedPrompts.includes(promptText)) {
-    newPrompt();
-}
+// if (usedPrompts.includes(promptText)) {
+//     newPrompt();
+// }
 // ^ reruns function if prompt has already been given to user previously 
 
-};
+
 // IMPORTANT - FIGURE OUT IF THERE ARE POTENTIAL DISCREPANCIES BETWEEN USERS PROMPT REFRESH TIMES
