@@ -4,7 +4,7 @@ const {Schema, model} = mongoose
 const postSchema = new Schema({
     postedBy: String,
     message: String,
-    imagePath: String,
+    imagePath: String, // SEE HOW TO MAKE THIS THE AVATAR ATTATCHED TO USER SCHEMA
     likes: Number,
     time: Date,
     comments: [
@@ -23,7 +23,7 @@ function addNewPost(userID, post, avatar){
     let myPost={
         postedBy: userID,
         message: post.message,
-        imagePath: avatar,
+        imagePath: avatar, // SEE HOW TO MAKE THIS THE AVATAR ATTATCHED TO USER SCHEMA
         likes: 0,
         time: Date.now(),
         comments: []

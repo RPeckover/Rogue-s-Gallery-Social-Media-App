@@ -355,7 +355,7 @@ async function newPrompt() {
 let currentPrompt;
 // declared to allow switch statment to change the variable's value
 
-    userid.usedPrompts.push(promptText);
+    userID.usedPrompts.push(promptText);
     // stores expired prompts in the user data object
     while (usedPrompts.includes(promptText)); {
         let min = Math.ceil(1);
