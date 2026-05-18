@@ -19,11 +19,11 @@ const postSchema = new Schema({
 const Post = model('Post', postSchema)
 
 
-function addNewPost(userID, post, imageFilename){
+function addNewPost(userID, post, avatar){
     let myPost={
         postedBy: userID,
         message: post.message,
-        imagePath: imageFilename,
+        imagePath: avatar,
         likes: 0,
         time: Date.now(),
         comments: []

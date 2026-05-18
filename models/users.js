@@ -46,7 +46,7 @@ const User = model("MyDemoUser", userSchema);
 
 async function newUser(username, password) {
   const user = { username: username, password: password, loggedin: false, avatar:  "/images/defailtPFP.png"}; // check if this or default in schema itself is correct for a default PFP
-  // bio: bio, (Add this above if going ahead with including bios to profiles)
+  // bio: bio, (Add this above if going ahead with including bios in profiles)
   await User.create(user).catch((err) => {
     console.log("Error:" + err);
   });

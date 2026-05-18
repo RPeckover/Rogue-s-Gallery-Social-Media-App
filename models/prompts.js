@@ -17,6 +17,7 @@ const { getUsers } = require("./users");
 // pass it to a switch statement which selects one of a range of methods of concatenating nouns and descriptors to create a new prompt. 
 // If this new prompt is the same as any in the user's 'usedPrompt' array, rerun the function.
 
+// CHECK HOW TO GET THIS INTERVAL TO HAPPEN AT A LOGICAL TIME - I.E. 00:00 UTC TIME
 // every 24 hours generates a new prompt
 setInterval(newPrompt, oneDay);
 
