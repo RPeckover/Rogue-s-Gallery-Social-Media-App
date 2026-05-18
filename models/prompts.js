@@ -348,38 +348,49 @@ async function newPrompt() {
 
 // Psuedocode - check 'creationTime' and if its 24 hours past 'currentTime', add prompt to used prompts, generate a new prompt by randomising a number to select one of a range of methods of concatenating nouns and descriptors
 
-userid.usedPrompts.push(promptText);
-// stores expired prompts in the user data object
+setInterval(newPrompt, oneDay);
+// every 24 hours generates a new prompt
 
-randomisePromptMethod();
+let currentPrompt;
+// declared to allow switch statment to change the variable's value
 
-function randomisePromptMethod(min, max) {
-    min = Math.ceil(1);
-    max = Math.floor(3); 
-    methodNum = Math.floor(Math.random() * (max - min + 1)) + min;
-    return methodNum;
-}
-switch (methodNum) {
-    //prompt method 1 
-    case 1:
-        let randomDescriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
-        let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-        //let currentPrompt = randomDescriptor + " " + randomNoun;
-        // set creation time
-
-    //prompt method 2 
-    case 2:
-        let randomNoun1 = nouns[Math.floor(Math.random() * nouns.length)];
-        let randomNoun2 = nouns[Math.floor(Math.random() * nouns.length)];
-        //let currentPrompt = randomNoun1 + " / " + randomNoun2 + " " + fusion;
-        // set creation time
-
-    case 3:
-        let randomDescriptor1 = descriptors[Math.floor(Math.random() * descriptors.length)];
-        let randomDescriptor2 = descriptors[Math.floor(Math.random() * descriptors.length)];
-        let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-        //let currentPrompt = randomDescriptor1 + " " + randomDescriptor2 + " " + randomNoun;
-        // set creation time
+function newPrompt() {
+    userid.usedPrompts.push(promptText);
+    // stores expired prompts in the user data object
+    for (usedPrompts; promptText;) {
+        // this seems wrong ^
+        if (usedPrompts.includes(promptText)) {
+            let min = Math.ceil(1);
+            let max = Math.floor(3); 
+            methodNum = Math.floor(Math.random() * (max - min + 1)) + min;
+            switch (methodNum) {
+                //prompt method 1 
+                case 1:
+                    let randomDescriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
+                    let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+                    currentPrompt = randomDescriptor + " " + randomNoun;
+                    // set creation time?
+                break;
+                //prompt method 2 
+                case 2:
+                    let randomNoun1 = nouns[Math.floor(Math.random() * nouns.length)];
+                    let randomNoun2 = nouns[Math.floor(Math.random() * nouns.length)];
+                    currentPrompt = randomNoun1 + " / " + randomNoun2 + " " + fusion;
+                    // set creation time?
+                break;
+                //prompt method 3
+                case 3:
+                    let randomDescriptor1 = descriptors[Math.floor(Math.random() * descriptors.length)];
+                    let randomDescriptor2 = descriptors[Math.floor(Math.random() * descriptors.length)];
+                    let randomNoun3 = nouns[Math.floor(Math.random() * nouns.length)];
+                    currentPrompt = randomDescriptor1 + " " + randomDescriptor2 + " " + randomNoun3;
+                    // set creation time?
+                    break;
+            promptText = currentPrompt;
+            // make promptText = currentPrompt and store in userSchema
+            }
+        }
+    }
 }
 
 getUsers();
@@ -394,4 +405,4 @@ if (usedPrompts.includes(promptText)) {
 // ^ reruns function if prompt has already been given to user previously 
 
 };
-// IMPORTANT - FIGURE OUT IF THERE CAN BE DISCREPANCIES BETWEEN USERS PROMPT REFRESH TIMES
+// IMPORTANT - FIGURE OUT IF THERE ARE POTENTIAL DISCREPANCIES BETWEEN USERS PROMPT REFRESH TIMES

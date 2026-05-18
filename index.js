@@ -23,9 +23,6 @@ const oneWeek = 1000 * 60 * 60 * 24 * 7;
 
 //Make prompts have a max age of one day
 
-// every 24 hours generates a new prompt
-setInterval(newPrompt, oneDay);
-
 const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
 
