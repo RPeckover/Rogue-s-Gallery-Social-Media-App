@@ -205,4 +205,9 @@ footer {
   font-size: 2rem;
 }
 
+.post-user-avatar {
+  max-width: 20px;
+  max-height: 20px;
+}
+
 /* Darkmode with switch between dark and light? */

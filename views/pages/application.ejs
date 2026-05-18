@@ -22,11 +22,11 @@
     <ul>
         <% postData.forEach(post=>{ %>
             <li>
-                <!-- <% if(post.imagePath){ %>
-                        <img src="<%= post.imagePath %>" alt="" class="post-image-thumbnail">
+                <% if(post.imagePath){ %>
+                        <img src="<%= post.imagePath %>" alt="" class="post-user-avatar">
                     <% } else { %>
                         <p>sorry no image available</p>
-                    <% } %> -->
+                    <% } %>
                 <p>
                     <%= post.postedBy %>
                 </p>
