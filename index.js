@@ -126,6 +126,7 @@ app.get("/application", checkLoggedIn, async (request, response) => {
     // ADD this to relevent pages so that username is displayed!
     isLoggedIn: checkLoggedInState(request),
     postData: await postData.getPosts(5),
+    // ^ update this to get more posts, only display a few per page but display more upon using arrow nav
   });
 });
 

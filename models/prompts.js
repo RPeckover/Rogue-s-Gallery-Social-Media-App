@@ -355,9 +355,11 @@ async function newPrompt() {
 let currentPrompt;
 // declared to allow switch statment to change the variable's value
 
+// loop through the users to update each user's prompt?
+
     userID.usedPrompts.push(promptText);
     // stores expired prompts in the user data object
-    while (usedPrompts.includes(promptText)); {
+    do {
         let min = Math.ceil(1);
         let max = Math.floor(3); 
         methodNum = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -388,6 +390,7 @@ let currentPrompt;
         // make promptText = currentPrompt and store in userSchema
         }
     }
+    while (usedPrompts.includes(promptText))
 }
 
 // getUsers();
