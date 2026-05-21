@@ -12,6 +12,7 @@ const postSchema = new Schema({
             message: String,
             commentBy: String,
             likes: Number
+            // Could I make 'likes' another nested data structure to error handle / prevent a user liking a post multiple times?
         }
     ]
 })

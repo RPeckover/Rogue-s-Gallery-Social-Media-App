@@ -21,6 +21,7 @@
         <!-- class allowing posts to display in a user friendly manner -->
     <ul>
         <% postData.forEach(post=>{ %>
+            <!-- ^ Likely needs adjustment to not display all posts -->
             <li>
                 <% if(post.imagePath){ %>
                         <img src="<%= post.imagePath %>" alt="" class="post-user-avatar">
