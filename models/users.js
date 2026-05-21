@@ -78,15 +78,6 @@ async function findUser(userToFind) {
   return foundUser;
 }
 
-// previous checkPassword without encryption
-// async function checkPassword(username, password){
-//     let user=await findUser(username)
-//     if(user){
-//         return user.password==password
-//     }
-//     return false
-// }
-
 //bcrypt version, passing in an action function
 async function checkPassword(username, password, action) {
   let user = await findUser(username);

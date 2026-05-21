@@ -11,9 +11,6 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 
-const path = require("path");
-//what is the purpose of this? ^
-
 const users = require("./models/users.js");
 
 const tenMins = 1000 * 60 * 10;
@@ -39,57 +36,19 @@ mongoose.connect(connectionString);
 const postData = require("./models/post-data.js");
 
 const multer = require("multer");
+const path = require("path");
 const upload = multer({ dest: "./public/uploads" });
-// error with upload 'destination never read'
 
 // edit profile functionality
 app.post("/profile-edit", checkLoggedIn, upload.single("myPFP"), async (request, response) => {
     console.log(request.body, request.file, request.session.userid);
     console.log(request.file);
     let avatar = null;
-     if (request.file && request.file.avatar) {
+     if (request.file && request.file.filename) {
     // checks file exists and has a file name
-    avatar = "uploads/" + request.file.avatar;
+    avatar = "uploads/" + request.file.filename;
   }
 });
-
-//Add email verification with sendgrid etc! - DON'T DO THIS
-
-// res.render allows the loading of a ejs view file
-// This seems redundant as later code does stuff that appears the same?
-
-// application page
-// app.get("/", function (req, res) {
-//   res.render("pages/application");
-// });
-
-// login page
-// app.get("/", function (req, res) {
-//   res.render("pages/login");
-// });
-
-// logout page
-// app.get("/", function (req, res) {
-//   res.render("pages/logout");
-// });
-
-// profile page
-// app.get("/", function (req, res) {
-//   res.render("pages/profile");
-// });
-
-// register page
-// app.get("/", function (req, res) {
-//   res.render("pages/register");
-// });
-
-// viewpost page
-// app.get("/", function (req, res) {
-//   res.render("pages/viewpost");
-// });
-
-// app.get('/login')
-//   res.render("login.ejs");
 
 app.use(
   sessions({
@@ -220,13 +179,6 @@ app.get("/about", (request, response) => {
   });
 });
 
-// app.post("/logout", (request, response) => {
-//   users.setLoggedIn(request.session.userid, false);
-//   request.session.destroy();
-//   console.log(users.getUsers());
-//   response.redirect("./loggedout.html");
-// });
-
 // new user register functionality
 app.post("/register", async (request, response) => {
   console.log(request.body);
@@ -276,12 +228,6 @@ app.post("/post", (request, response) => {
 });
 // Was this for testing? ^
 
-// app.post("/newpost", (request, response) => {
-//   console.log(request.body);
-//   postData.addNewPost(request.session.userid, request.body.message);
-//   response.redirect("./application.html");
-// });
-
 // post creation functionality
 app.post("/newpost", checkLoggedIn, async (request, response) => {
   console.log(request.body);
@@ -302,30 +248,5 @@ app.get("/getposts", async (request, response) => {
 });
 // add ability to go to another page with further posts and curate the main timeline more to whoever is being followed by the logged in user
 
-// function checkLoggedIn(request, response, nextAction) {
-//   if (request.session) {
-//     if (request.session.userid) {
-//       nextAction();
-//     } else {
-//       request.session.destroy();
-//       return response.render("pages/login");
-//     }
-//   }
-// }
-
-// app.get("/app", checkLoggedIn, async (request, response) => {
-//   response.render("pages/app", {
-//     username: request.session.userid,
-//     posts: await postData.getPosts(5),
-//   });
-// });
-//ADD CURRENT PROMPT AS DATA TO THE ABOVE CODE
-
 // require('dotenv').config()
 // console.log(process.env.SECRET_FILE)
-
-//NOTABLE ISSUE - you can still post when logged out
-//NOTABLE ISSUE - post time and likes aren't included in posts printed to app
-//Check if these issues are still present ^
-
-//8ff97b1aa81488ca6d4cfa588d4fcf4fdcc15eb6

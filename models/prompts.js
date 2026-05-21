@@ -356,6 +356,8 @@ let currentPrompt;
 // declared to allow switch statment to change the variable's value
 
 // loop through the users to update each user's prompt?
+// Look at 'find all and update' - or 'find one and update' 
+// or simulate it and use documentation
 
     userID.usedPrompts.push(promptText);
     // stores expired prompts in the user data object

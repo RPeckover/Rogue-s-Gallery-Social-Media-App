@@ -19,12 +19,11 @@ const postSchema = new Schema({
 
 const Post = model('Post', postSchema)
 
-
-function addNewPost(userID, post, avatar){
+function addNewPost(userID, post, myPFP){
     let myPost={
         postedBy: userID,
         message: post.message,
-        imagePath: avatar, // SEE HOW TO MAKE THIS THE AVATAR ATTATCHED TO USER SCHEMA
+        imagePath: user.myPFP, // SEE HOW TO MAKE THIS THE AVATAR ATTATCHED TO USER SCHEMA
         likes: 0,
         time: Date.now(),
         comments: []
@@ -77,7 +76,6 @@ async function commentOnPost(postID, commentText, commentBy){
     await Post.findOneAndUpdate({_id:postID}, {$push: {comments: newComment}})
         .exec()
 }
-
 
 module.exports={
     addNewPost,
