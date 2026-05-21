@@ -40,15 +40,16 @@ const postData = require("./models/post-data.js");
 
 const multer = require("multer");
 const upload = multer({ dest: "./public/uploads" });
-//Error with upload 'destination never read'
+// error with upload 'destination never read'
 
 // edit profile functionality
-app.post("/profile-edit", checkLoggedIn, upload.single("avatar"), async (request, response) => {
+app.post("/profile-edit", checkLoggedIn, upload.single("myPFP"), async (request, response) => {
     console.log(request.body, request.file, request.session.userid);
-    let filename = null;
-     if (request.file && request.file.filename) {
+    console.log(request.file);
+    let avatar = null;
+     if (request.file && request.file.avatar) {
     // checks file exists and has a file name
-    filename = "uploads/" + request.file.filename;
+    avatar = "uploads/" + request.file.avatar;
   }
 });
 
