@@ -34,9 +34,9 @@
                 <p>
                     <%= post.message %>
                 </p>
-                <button onclick="location.href='/like?postid=<%= post._id %>'">&#x2665 <%= post.likes%></button>
+                <button class="likeBtn" onclick="location.href='/like?postid=<%= post._id %>'">&#x2665 <%= post.likes%></button>
                 <!-- '&#x2665' is a heart icon -->
-                <a href="/viewpost?postid=<%= post._id %>">Comment</a>
+                <a class="commentBtn" href="/viewpost?postid=<%= post._id %>">Comment</a>
             </li>
         <% }) %>
     </ul>
