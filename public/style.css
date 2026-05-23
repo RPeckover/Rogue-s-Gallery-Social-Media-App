@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Kumar+One+Outline&display=swap&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
 
+* {
+  font-family: "Noto Serif";
+  /* sets all text to the Noto Serif font family */
+}
+
 header {
   /* width: 100%; */
   /* margin: 0%;
@@ -23,19 +28,6 @@ header h1 {
   margin: 20px;
 }
 
-* {
-  font-family: "Noto Serif";
-}
-
-ul {
-  display: flex;
-  list-style-type: none;
-}
-
-li .nav-text {
-  margin: 0px 20px 0px 10px;
-}
-
 html {
   height: 100%;
 }
@@ -51,10 +43,45 @@ body {
   min-height: 100vh;
 }
 
-main {
+/* main {
   flex: 1;
-}
+} */
 /* ^ Change this? */
+
+/* .container {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+} */
+/* ^ Check if this class will be necessary in EJS views */
+
+.content-wrapper {
+  flex: 1 0 auto;
+  max-width: 1280px;
+  /* constrains the width of the container to 1280px ISSUES WITH ABOUT PAGE DISPLAYING ARE CONNECTED TO THIS - UPDATE, ABOUT PAGE DISPLAYS IF HEADER ISNT INCLUDED, LOOK INTO THIS FURTHER*/
+  margin: 0 auto;
+  /* allows for dynamic centering via the browser */
+  height: auto;
+  text-align: center;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  background-color: rgb(41, 33, 119);
+  color: rgb(97, 74, 247);
+  font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
+  min-height: 50px;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+}
+
+li .nav-text {
+  margin: 0px 20px 0px 10px;
+}
 
 img {
   margin: 10px;
@@ -62,9 +89,7 @@ img {
   /* allows for responsive scaling */
 }
 
-.nav-text {
-  color: rgb(97, 74, 247);
-}
+/* Headings */
 
 h1 {
   font-family: "Kumar One Outline", system-ui;
@@ -82,16 +107,18 @@ h4 {
   /* justify-self: center; */
 }
 
+/* Text */
+
+.nav-text {
+  color: rgb(97, 74, 247);
+}
+
 .purple-text {
   color: rgb(97, 74, 247);
 }
 
 p {
   font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
-}
-
-a {
-  color: rgb(41, 33, 119);
 }
 
 input {
@@ -106,30 +133,10 @@ input {
 
 /* ^ Attempt to fix the file inputs not centering */
 
-.container {
-  min-height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-}
-/* ^ Check if this class will be necessary in EJS views */
+/* Buttons + Links */
 
-footer {
-  flex-shrink: 0;
-  text-align: center;
-  background-color: rgb(41, 33, 119);
-  color: rgb(97, 74, 247);
-  font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
-  min-height: 50px;
-}
-
-.content-wrapper {
-  flex: 1 0 auto;
-  max-width: 1280px;
-  /* constrains the width of the container to 1280px ISSUES WITH ABOUT PAGE DISPLAYING ARE CONNECTED TO THIS - UPDATE, ABOUT PAGE DISPLAYS IF HEADER ISNT INCLUDED, LOOK INTO THIS FURTHER*/
-  margin: 0 auto;
-  /* allows for dynamic centering via the browser */
-  height: auto;
-  text-align: center;
+a {
+  color: rgb(41, 33, 119);
 }
 
 .btn {
@@ -190,15 +197,7 @@ footer {
   margin: 5px;
 }
 
-/* class allowing posts to display in a user friendly manner */
-.post-timeline-container {
-  display: grid;
-  grid-template-columns: 5fr;
-  justify-content: center;
-  border: 4px groove;
-  border-color: grey;
-  /* text-align: center; */
-}
+/* Posts + Timeline */
 
 .post-maker-container {
   box-shadow: 0 4px 8px 0 rgba(85, 6, 97, 0.4);
@@ -211,20 +210,43 @@ footer {
   /* width: 60%; */
 }
 
-.post-maker-container:hover {
+/* class allowing posts to display in a user friendly manner */
+.post-timeline-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* justify-content: baseline; */
+  border: 4px groove;
+  border-color: grey;
+  /* text-align: center; */
+}
+
+.timeline-post {
+  box-shadow: 0 4px 8px 0 rgba(85, 6, 97, 0.4);
+  transition: 0.3s;
+  margin: 10px 5px 10px 5px;
+}
+
+/* on mouse-over, adds a deeper shadow */
+.timeline-post:hover {
   box-shadow: 0 8px 15px 0 rgba(85, 6, 97, 0.4);
 }
 
-.login-form {
-  display: inline-block;
-  /* align-items: center; */
-  /* justify-content: center; */
+/* adds some padding inside the mini-blog and for responsive layout via flexbox */
+.post-user-info {
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
 }
-/* SEE IF THE ABOVE IS NEEDED ^ */
 
-.profile-form-container {
-  display: inline-block;
-  /* justify-content: center; */
+.post-user-avatar {
+  max-width: 20px;
+  max-height: 20px;
+  /* align-self: center; */
+}
+
+.post-maker-container:hover {
+  box-shadow: 0 8px 15px 0 rgba(85, 6, 97, 0.4);
 }
 
 .timeline-nav-container {
@@ -257,28 +279,14 @@ footer {
   font-size: 2rem;
 }
 
-.post-user-avatar {
-  max-width: 20px;
-  max-height: 20px;
+.login-form {
+  display: inline-block;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
+/* SEE IF THE ABOVE IS NEEDED ^ */
 
-/* Darkmode with switch between dark and light? */
-
-.timeline-post {
-  box-shadow: 0 4px 8px 0 rgba(85, 6, 97, 0.4);
-  transition: 0.3s;
-  margin: 10px 5px 0px 5px;
-}
-
-/* on mouse-over, adds a deeper shadow */
-.timeline-post:hover {
-  box-shadow: 0 8px 15px 0 rgba(85, 6, 97, 0.4);
-}
-
-/* adds some padding inside the mini-blog and for responsive layout via flexbox */
-.post-user-info {
-  padding: 5px;
-  margin: 5px;
-  display: flex;
-  justify-content: center;
+.profile-form-container {
+  display: inline-block;
+  /* justify-content: center; */
 }

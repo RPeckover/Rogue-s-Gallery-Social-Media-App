@@ -23,7 +23,7 @@ function addNewPost(userID, post, myPFP){
     let myPost={
         postedBy: userID,
         message: post.message,
-        imagePath: user.myPFP, // SEE HOW TO MAKE THIS THE AVATAR ATTATCHED TO USER SCHEMA
+        imagePath: myPFP, // SEE HOW TO MAKE THIS THE AVATAR ATTATCHED TO USER SCHEMA
         likes: 0,
         time: Date.now(),
         comments: []
