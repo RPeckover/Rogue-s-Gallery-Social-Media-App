@@ -17,12 +17,11 @@
     <br>
     <hr>
     <h2>Recent Posts</h2>
-    <div class="post-timeline-container">
-        <!-- class allowing posts to display in a user friendly manner -->
-    <ul>
+    <ul class="post-timeline-container">
         <% postData.forEach(post=>{ %>
             <!-- ^ Likely needs adjustment to not display all posts -->
-            <li>
+            <li class="timeline-post">
+                <div class="post-user-info">
                 <% if(post.imagePath){ %>
                         <img src="<%= post.imagePath %>" alt="" class="post-user-avatar">
                     <% } else { %>
@@ -31,6 +30,7 @@
                 <p>
                     <%= post.postedBy %>
                 </p>
+                </div>
                 <p>
                     <%= post.message %>
                 </p>
@@ -40,7 +40,6 @@
             </li>
         <% }) %>
     </ul>
-    </div>
     <ul class="timeline-nav-container">
         <li id="timeline-back-button"><a href="#">&laquo;</a></li>
         <li><a href="#">1</a></li>

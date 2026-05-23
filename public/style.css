@@ -32,7 +32,7 @@ ul {
   list-style-type: none;
 }
 
-li {
+li .nav-text {
   margin: 0px 20px 0px 10px;
 }
 
@@ -54,6 +54,7 @@ body {
 main {
   flex: 1;
 }
+/* ^ Change this? */
 
 img {
   margin: 10px;
@@ -73,6 +74,7 @@ h1 {
 
 h2 {
   text-align: center;
+  text-decoration: underline;
 }
 
 h4 {
@@ -188,6 +190,7 @@ footer {
   margin: 5px;
 }
 
+/* class allowing posts to display in a user friendly manner */
 .post-timeline-container {
   display: grid;
   grid-template-columns: 5fr;
@@ -260,3 +263,22 @@ footer {
 }
 
 /* Darkmode with switch between dark and light? */
+
+.timeline-post {
+  box-shadow: 0 4px 8px 0 rgba(85, 6, 97, 0.4);
+  transition: 0.3s;
+  margin: 10px 5px 0px 5px;
+}
+
+/* on mouse-over, adds a deeper shadow */
+.timeline-post:hover {
+  box-shadow: 0 8px 15px 0 rgba(85, 6, 97, 0.4);
+}
+
+/* adds some padding inside the mini-blog and for responsive layout via flexbox */
+.post-user-info {
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+}
