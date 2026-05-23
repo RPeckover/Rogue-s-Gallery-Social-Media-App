@@ -117,7 +117,7 @@ app.get("/like", checkLoggedIn, async (request, response) => {
 // NOTE - CURRENTLY USER CAN LIKE A POST MULTIPLE TIMES BY REFRESHING THE PAGE OR JUST CLICKING MULTIPLE TIMES
 
 
-// add comment functionality
+// functionality for adding comments
 app.post("/comment", checkLoggedIn, async (request, response) => {
   // let postID=request.query.postid
   await postData.commentOnPost(
@@ -240,7 +240,6 @@ app.post("/newpost", checkLoggedIn, async (request, response) => {
   });
 });
 // NOTE - CURRENTLY USER CAN REFRESH NEWPOST URL TO SPAM POST, ALSO REMOVE IMAGE POSTS 
-// Text no longer appearing after having removed images as a part of posts
 
 // post/timeline display functionality
 app.get("/getposts", async (request, response) => {
@@ -250,3 +249,16 @@ app.get("/getposts", async (request, response) => {
 
 // require('dotenv').config()
 // console.log(process.env.SECRET_FILE)
+
+// function to allow user to delete profile and all posts
+async function eraseUser() {
+  if (document.querySelector('#eraseTickbox').checked) {// checks the tickbox has been selected, confirming intent to erase the account
+    //ADD for loop going through posts, deleting them
+    //ADD delete user
+    window.alert("account deleted.");
+    request.session.destroy();
+    response.render("pages/register");// sends user back to register page
+} else {
+    window.alert("please also tick the checkbox if you would like to erase your account");// alerts user that they must use the tickbox to reset their progress
+}
+}
