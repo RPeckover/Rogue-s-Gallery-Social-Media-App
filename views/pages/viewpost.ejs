@@ -5,9 +5,8 @@
 <main>
      <h2>Viewing Post</h2>
     <div>
-        <!-- DONT WANT IMAGES AS REGULAR USER POSTS, JUST PFP I THINK -->
         <% if(post.imagePath){ %>
-                <img src="<%= post.imagePath %>" alt="" class="post-image-thumbnail">
+                <img src="<%= post.imagePath %>" alt="" class="post-user-avatar">
             <% } else { %>
                 <p>No image available</p>
                 <!-- Review images and how I want to handle them -->
@@ -19,15 +18,17 @@
             <%= post.postedBy %>
         </p>
         <h4>Hecklers (Comments) <%= post.comments.length %></h4>
-        <!-- list existing comments -->
         <ul>
             <% post.comments.forEach(comment=>{ %>
+                <!-- loop housing each comment's relevant info within html elements -->
                 <li>
                     <p>
-                        <%= comment.message %>
+                        <%= comment.commentBy %>
+                        <!-- list commenter of existing comment -->
                     </p>
                     <p>
-                        <%= comment.commentBy %>
+                        <%= comment.message %>
+                        <!-- list existing comments -->
                     </p>
                 </li>
             <% }) %>
@@ -44,4 +45,4 @@
 </div>
 </main>
 </body>
-<%- include('../partials/footer')%>
+<%- include('../partials/footer')%> 

@@ -13,13 +13,13 @@
         <input type="submit" class="btn" value="Post">
     </form>
     </div>
-    <!-- End of post maker -->
+    <!-- End of post-maker -->
     <br>
     <hr>
     <h2>Recent Posts</h2>
     <ul class="post-timeline-container">
         <% postData.forEach(post=>{ %>
-            <!-- ^ Likely needs adjustment to not display all posts -->
+        <!-- loop housing each post's relevant info within html elements -->
             <li class="timeline-post">
                 <div class="post-user-info">
                 <% if(post.imagePath){ %>
@@ -29,10 +29,12 @@
                     <% } %>
                 <p>
                     <%= post.postedBy %>
+                    <!-- displays the post author's username -->
                 </p>
                 </div>
                 <p>
                     <%= post.message %>
+                    <!-- displays the post's text content -->
                 </p>
                 <button class="likeBtn" onclick="location.href='/like?postid=<%= post._id %>'">&#x2665 <%= post.likes%></button>
                 <!-- '&#x2665' is a heart icon -->
@@ -49,7 +51,7 @@
         <li><a href="#">5</a></li>
         <li id="timeline-forward-button"><a href="#">&raquo;</a></li>
         <!-- navigation to allow user to look through further posts -->
-         <!-- see if btn class stylings can be used -->
+        <!-- see if btn class stylings can be used -->
     </ul>
     <!-- Based on styling from: https://www.w3schools.com/css/css3_pagination_styles.asp -->
 </div>
