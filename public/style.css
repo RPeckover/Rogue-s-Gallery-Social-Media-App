@@ -21,15 +21,24 @@ header {
 }
 
 header h1 {
-  /* Selects all `h1` elements that are somewhere inside of a `header` element, in this case the title */
+  /* Selects all `h1` elements that are somewhere inside of a `header` element, in this case the site's title / logo */
   font-size: 200%;
   font-family: "Kumar One Outline", system-ui;
   color: rgb(97, 74, 247);
   margin: 20px;
 }
+/* Should this go under 'text' or under main header structure */
+
+.header-user-text {
+  /* styles text in header referring to user login state */
+  display: flex;
+  justify-content: center;
+}
+/* ^ May be unecessary */
 
 html {
-  height: 100%; /* by giving the html parent object a height of 100%, children elements can be scaled using % values based off of the parent  */
+  height: 100%;
+  /* by giving the html parent object a height of 100%, children elements can be scaled using % values based off of the parent  */
 }
 
 body {
@@ -39,8 +48,10 @@ body {
   background-color: rgb(87, 129, 172);
   padding: 0;
   margin: 0;
-  font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
-  min-height: 100vh; /* ensures the footer doesn't display too high up the page */
+  font-size: 1.25rem;
+  /* styled to the root font size (by default 16px) allows accessible resizing from user */
+  min-height: 100vh;
+  /* ensures the footer doesn't display too high up the page */
 }
 
 /* main {
@@ -56,12 +67,12 @@ body {
 /* ^ Check if this class will be necessary in EJS views */
 
 .content-wrapper {
-  flex: 1 0 auto;
   max-width: 1280px;
-  /* constrains the width of the container to 1280px ISSUES WITH ABOUT PAGE DISPLAYING ARE CONNECTED TO THIS - UPDATE, ABOUT PAGE DISPLAYS IF HEADER ISNT INCLUDED, LOOK INTO THIS FURTHER*/
+  /* display: flex 1 0 auto; */
   margin: 0 auto;
-  /* allows for dynamic centering via the browser */
+  /* constrains the width of the container to 1280px */
   height: auto;
+  /* allows for dynamic centering via the browser */
   text-align: center;
 }
 
@@ -70,7 +81,8 @@ footer {
   text-align: center;
   background-color: rgb(41, 33, 119);
   color: rgb(97, 74, 247);
-  font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
+  font-size: 1.25rem;
+  /* styled to the root font size (by default 16px) allows accessible resizing from user */
   min-height: 50px;
 }
 
@@ -79,6 +91,10 @@ ul {
   list-style-type: none;
 }
 
+/* li {
+  margin: 0;
+} */
+
 img {
   margin: 10px;
   width: 100%;
@@ -86,6 +102,17 @@ img {
 }
 
 /* Headings */
+
+p {
+  font-size: 1.25rem;
+  /* styled to the root font size (by default 16px) allows accessible resizing from user */
+}
+
+input {
+  margin: 5px 0px 5px 0px;
+  font-size: 1.25rem;
+  /* styled to the root font size (by default 16px) allows accessible resizing from user */
+}
 
 h1 {
   font-family: "Kumar One Outline", system-ui;
@@ -100,7 +127,9 @@ h2 {
 
 h4 {
   text-align: center;
-  /* justify-self: center; */
+  justify-self: center;
+  justify-content: center;
+  display: flex;
 }
 
 /* Text */
@@ -115,15 +144,6 @@ li .nav-text {
 
 .purple-text {
   color: rgb(97, 74, 247);
-}
-
-p {
-  font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
-}
-
-input {
-  margin: 5px 0px 5px 0px;
-  font-size: 1.25rem; /* styled to the root font size (by default 16px) allows accessible resizing from user */
 }
 
 /* input[type="file"] {
@@ -207,14 +227,13 @@ a {
   /* width: 60%; */
 }
 
-/* class allowing posts to display in a user friendly manner */
 .post-timeline-container {
+  /* class allowing posts to display in a user friendly manner */
   display: grid;
   grid-template-columns: 1fr;
   /* justify-content: baseline; */
   border: 4px groove;
   border-color: grey;
-  /* text-align: center; */
 }
 
 .timeline-post {
@@ -223,13 +242,13 @@ a {
   margin: 10px 5px 10px 5px;
 }
 
-/* on mouse-over, adds a deeper shadow */
 .timeline-post:hover {
+  /* on mouse-over, adds a deeper shadow */
   box-shadow: 0 8px 15px 0 rgba(85, 6, 97, 0.4);
 }
 
-/* adds some padding inside the mini-blog and for responsive layout via flexbox */
 .post-user-info {
+  /* allows for username, profile icon to be styled to appear at the top */
   padding: 5px;
   margin: 5px;
   display: flex;

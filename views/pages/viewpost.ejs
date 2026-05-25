@@ -13,11 +13,14 @@
             <% } %>
         <p>
             <%= post.message %>
+            <!-- displays the post author's username -->
         </p>
         <p>
             <%= post.postedBy %>
+            <!-- displays the post's text content -->
         </p>
         <h4>Hecklers (Comments) <%= post.comments.length %></h4>
+        <!-- displays the number of comments -->
         <ul>
             <% post.comments.forEach(comment=>{ %>
                 <!-- loop housing each comment's relevant info within html elements -->
@@ -33,8 +36,8 @@
                 </li>
             <% }) %>
         </ul>
-        <!-- form to input new comment -->
         <form action="/comment" method="POST">
+        <!-- form to input a new comment -->
             <label>Add a Comment</label><br>
             <input type="hidden" id="postid" name="postid" value="<%= post._id %>">
             <input type="text" id="comment" name="comment"><br>

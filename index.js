@@ -14,11 +14,9 @@ app.use(express.urlencoded({ extended: false }));
 const users = require("./models/users.js");
 
 const tenMins = 1000 * 60 * 10;
-const oneHour = 1000 * 60 * 60;
-const oneDay = 1000 * 60 * 60 * 24;
-const oneWeek = 1000 * 60 * 60 * 24 * 7;
-
-//Make prompts have a max age of one day
+// const oneHour = 1000 * 60 * 60;
+// const oneDay = 1000 * 60 * 60 * 24;
+// const oneWeek = 1000 * 60 * 60 * 24 * 7;
 
 const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
@@ -50,12 +48,14 @@ app.post("/profile-edit", checkLoggedIn, upload.single("myPFP"), async (request,
   }
 });
 
+// session functionality 
 app.use(
   sessions({
     secret: "a secret that only i know",
     // Replace with .env - What exactly is this used for here? Currently ENV only stores the key needed for compass etc, what does the session need to store that is anonymous?
     saveUninitialized: true,
-    cookie: { maxAge: tenMins },
+    cookie: { maxAge: tenMins }, 
+    // logs a user out after 10 mins - CHECK IF its 10 inactive mins or just 10 mins no matter what
     resave: false,
   })
 );
@@ -83,7 +83,7 @@ function checkLoggedInState(request) {
 app.get("/application", checkLoggedIn, async (request, response) => {
   response.render("pages/application", {
     username: request.session.userid,
-    // ADD this to relevent pages so that username is displayed!
+    // added to relevent pages so that username is displayed
     isLoggedIn: checkLoggedInState(request),
     postData: await postData.getPosts(5),
     // ^ update this to get more posts, only display a few per page but display more upon using arrow nav
@@ -104,7 +104,7 @@ app.get("/viewpost", checkLoggedIn, async (request, response) => {
   });
 });
 
-// post liking functionality (paired with the likePost function found in 'posts-data.js')
+// post liking functionality (paired with the 'likePost' function found in 'posts-data.js')
 app.get("/like", checkLoggedIn, async (request, response) => {
   let postID = request.query.postid;
   await postData.likePost(postID);
@@ -179,7 +179,7 @@ app.get("/about", (request, response) => {
   });
 });
 
-// new user register functionality
+// new user registry functionality
 app.post("/register", async (request, response) => {
   console.log(request.body);
   let userData = request.body;
@@ -223,6 +223,7 @@ app.post("/login", async (request, response) => {
     // Maybe redirect user to login page but also trigger a popover / callout letting the user know the login failed
   }
 });
+
 app.post("/post", (request, response) => {
   console.log(request.body);
 });
@@ -239,7 +240,7 @@ app.post("/newpost", checkLoggedIn, async (request, response) => {
     postData: await postData.getPosts(5),
   });
 });
-// NOTE - CURRENTLY USER CAN REFRESH NEWPOST URL TO SPAM POST, ALSO REMOVE IMAGE POSTS 
+// NOTE - CURRENTLY USER CAN REFRESH NEWPOST URL TO SPAM POSTS
 
 // post/timeline display functionality
 app.get("/getposts", async (request, response) => {
@@ -254,11 +255,15 @@ app.get("/getposts", async (request, response) => {
 async function eraseUser() {
   if (document.querySelector('#eraseTickbox').checked) {// checks the tickbox has been selected, confirming intent to erase the account
     //ADD for loop going through posts, deleting them
-    //ADD delete user
     window.alert("account deleted.");
+    //ADD delete user
     request.session.destroy();
     response.render("pages/register");// sends user back to register page
 } else {
     window.alert("please also tick the checkbox if you would like to erase your account");// alerts user that they must use the tickbox to reset their progress
 }
+}
+
+async function erasePost() {
+  // use 'get one and update'?
 }

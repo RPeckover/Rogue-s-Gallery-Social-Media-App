@@ -1,10 +1,12 @@
 <header>
   <h1>Rogue's Gallery</h1>
+  <div class="header-user-text">
     <% if(isLoggedIn){ %>
         <h4 class=nav-text>Username: <%= username %></h4>
     <% } else { %>
         <h4 class=nav-text> Welcome! Log in to view the gallery</h4>
     <% } %>
+  </div>
   <nav class="full-nav">
     <ul>
       <% if(isLoggedIn){ %>
