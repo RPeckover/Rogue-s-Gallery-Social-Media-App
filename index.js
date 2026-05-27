@@ -38,21 +38,24 @@ const path = require("path");
 const upload = multer({ dest: "./public/uploads" });
 
 // edit profile functionality
-app.post("/profile-edit", checkLoggedIn, upload.single("myPFP"), async (request, response) => {
+app.post("/profileEdit", checkLoggedIn, upload.single("myPFP"), async (request, response) => {
     console.log(request.body, request.file, request.session.userid);
     console.log(request.file);
     let avatar = null;
      if (request.file && request.file.filename) {
     // checks file exists and has a file name
     avatar = "uploads/" + request.file.filename;
+    // LET USERNAME AND PASSWORD BE EDITED TOO
   }
 });
+
+const sessionSecret = process.env.SESSION_SECRET;
 
 // session functionality 
 app.use(
   sessions({
-    secret: "a secret that only i know",
-    // Replace with .env - What exactly is this used for here? Currently ENV only stores the key needed for compass etc, what does the session need to store that is anonymous?
+    secret: sessionSecret,
+    // the session secret is a salt for the hash and prevents security vulnerability to spoofing via cookies 
     saveUninitialized: true,
     cookie: { maxAge: tenMins }, 
     // logs a user out after 10 mins - CHECK IF its 10 inactive mins or just 10 mins no matter what
@@ -92,11 +95,7 @@ app.get("/application", checkLoggedIn, async (request, response) => {
 
 // viewpost EJS page view
 app.get("/viewpost", checkLoggedIn, async (request, response) => {
-  let postID = request.query.postid; //'66321bf0fdfeacf1d9fb6e88'
-  // console.log(postID)
-  //let retrievedPost = await postData.getPost(postID);
-  // console.log(retrievedPost)
-  //Above lines are for testing ^
+  let postID = request.query.postid;
   response.render("pages/viewpost", {
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
@@ -112,6 +111,7 @@ app.get("/like", checkLoggedIn, async (request, response) => {
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
     postData: await postData.getPosts(5),
+    // seems inefficient to call this each time a user gives a like
   });
 });
 // NOTE - CURRENTLY USER CAN LIKE A POST MULTIPLE TIMES BY REFRESHING THE PAGE OR JUST CLICKING MULTIPLE TIMES
@@ -247,9 +247,6 @@ app.get("/getposts", async (request, response) => {
   response.json({ posts: await postData.getPosts(5) });
 });
 // add ability to go to another page with further posts and curate the main timeline more to whoever is being followed by the logged in user
-
-// require('dotenv').config()
-// console.log(process.env.SECRET_FILE)
 
 // function to allow user to delete profile and all posts
 async function eraseUser() {

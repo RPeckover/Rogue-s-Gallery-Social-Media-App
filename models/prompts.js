@@ -409,3 +409,5 @@ let currentPrompt;
 // ^ reruns function if prompt has already been given to user previously 
 
 // IMPORTANT - FIGURE OUT IF THERE ARE POTENTIAL DISCREPANCIES BETWEEN USERS PROMPT REFRESH TIMES
+
+exports.newPrompt = newPrompt;
