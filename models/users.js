@@ -13,39 +13,41 @@ const userSchema = new Schema({
       currentTime: {type: Date, default: Date.now}
     }
   ],
-  usedPrompts: [] // will store prompts to ensure identical prompts aren't served to the same user twice
+  usedPrompts: [] 
+  // will store prompts to ensure identical prompts aren't served to the same user twice
 });
 
-//import bcrypt
 const bcrypt = require("bcrypt");
+// imports bcrypt
 const SALT_WORK_FACTOR = 10;
+// 
 
 userSchema.pre("save", function (next) {
   let user = this;
 //Why do we make user = 'this'?  - copied from bcrypt
 
-  // only hash the password if it has been modified (or is new)
   if (!user.isModified("password")) return next();
+  // only hash the password if it has been modified (or is new)
 
-  // generate a salt
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+  // generates a salt
     if (err) return next(err);
 
-    // hash the password using the new salt
     bcrypt.hash(user.password, salt, function (err, hash) {
+      // hashes the password using the new salt
       if (err) return next(err);
 
-      // override the cleartext password with the hashed one
       user.password = hash;
+      // overrides the cleartext password with the hashed one
       next();
     });
   });
 });
 
-const User = model('User', userSchema);
+const User = model('myDemoUser', userSchema);
 
 async function newUser(username, password) {
-  const user = { username: username, password: password, loggedin: false, avatar: "/images/defaultPFP.png"}; // check if this or default in schema itself is correct for a default PFP
+  const user = { username: username, password: password, loggedin: false, avatar: myPFP}; // check if this or default in schema itself is correct for a default PFP
   // bio: bio, (Add this above if going ahead with including bios in profiles)
   await User.create(user).catch((err) => {
     console.log("Error:" + err);
@@ -78,8 +80,8 @@ async function findUser(userToFind) {
   return foundUser;
 }
 
-//bcrypt version, passing in an action function
 async function checkPassword(username, password, action) {
+// checks password matches via bcrypt by passing in an action function
   let user = await findUser(username);
   if (user) {
     bcrypt

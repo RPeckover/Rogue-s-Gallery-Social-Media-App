@@ -237,7 +237,9 @@ a {
 .timeline-post {
   box-shadow: 0 4px 8px 0 rgba(85, 6, 97, 0.4);
   transition: 0.3s;
-  margin: 10px 5px 10px 5px;
+  margin: 15px 10px 15px 10px;
+  border: outset 5px;
+  border-color: rgb(80, 61, 209);
 }
 
 .timeline-post:hover {
@@ -311,4 +313,9 @@ a {
 .profile-form-container {
   display: inline-block;
   /* justify-content: center; */
+}
+
+.viewpost-comment-container {
+  display: grid;
+  grid-template-columns: 1fr;
 }

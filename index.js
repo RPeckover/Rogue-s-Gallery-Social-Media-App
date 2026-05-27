@@ -1,35 +1,42 @@
 const express = require("express");
-// const utils = require("./utils.js");
-// Need to figure out what is best placed in utils
-
 const app = express();
 app.listen(3007, () => console.log("Listening on port 3007"));
 
 app.use(express.static("./public"));
-
+// serves unspecified static pages from the public directory
 app.use(express.json());
+// enables usage of express middleware for json 
 
 app.use(express.urlencoded({ extended: false }));
+// allows for processing post info within urls
 
 const users = require("./models/users.js");
+// imports custom user node module
 
 const tenMins = 1000 * 60 * 10;
-// const oneHour = 1000 * 60 * 60;
-// const oneDay = 1000 * 60 * 60 * 24;
-// const oneWeek = 1000 * 60 * 60 * 24 * 7;
+// stores session expiry times in ms
+
 
 const sessions = require("express-session");
+// allows usage of the 'sessions' module 
 const cookieParser = require("cookie-parser");
+// allows useage of the 'cookie-parser' module
 
 app.use(cookieParser());
+// enables usage of 'cookie-parser' middleware 
 
 require("dotenv").config();
 const mongoDBPassword=process.env.MONGODB_PASSWORD;
+// 
 const myDatabase="roshan_blog";
+// 
 
 const mongoose = require("mongoose");
+// imports mongoose ODM library
 const connectionString = `mongodb+srv://CCO6005-00:${mongoDBPassword}@cluster0.lpfnqqx.mongodb.net/${myDatabase}?retryWrites=true&w=majority`;
+// 
 mongoose.connect(connectionString);
+// 
 
 const postData = require("./models/post-data.js");
 
@@ -51,9 +58,10 @@ app.post("/profileEdit", checkLoggedIn, upload.single("myPFP"), async (request, 
 
 const sessionSecret = process.env.SESSION_SECRET;
 
-// session functionality 
+// sessions functionality  
 app.use(
   sessions({
+    // loads and configures the 'sessions' middleware
     secret: sessionSecret,
     // the session secret is a salt for the hash and prevents security vulnerability to spoofing via cookies 
     saveUninitialized: true,
@@ -64,6 +72,7 @@ app.use(
 );
 
 function checkLoggedIn(request, response, nextAction) {
+// checks user is currently logged in with a valid session
   if (request.session) {
     if (request.session.userid) {
       nextAction();

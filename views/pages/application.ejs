@@ -27,10 +27,12 @@
                     <% } else { %>
                         <p>sorry no image available</p>
                     <% } %>
-                <p><strong>
+                <p>
+                    <strong>
                     <%= post.postedBy %>
                     <!-- displays the post author's username -->
-                </p></strong>
+                     </strong>
+                </p>
                 </div>
                 <p class="post-text">
                     <%= post.message %>
@@ -38,7 +40,8 @@
                 </p>
                 <button class="likeBtn" onclick="location.href='/like?postid=<%= post._id %>'">&#x2665 <%= post.likes%></button>
                 <!-- '&#x2665' is a heart icon -->
-                <a class="commentBtn" href="/viewpost?postid=<%= post._id %>">Comment</a>
+                <a class="commentBtn" href="/viewpost?postid=<%= post._id %>">Comment (<%= post.comments.length%>)</a>
+                <!-- button indicating user can comment on the post and noting how many comments currently exist on said post -->
             </li>
         <% }) %>
     </ul>

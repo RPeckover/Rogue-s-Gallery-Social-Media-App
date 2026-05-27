@@ -18,6 +18,7 @@ const { getUsers } = require("./users");
 // If this new prompt is the same as any in the user's 'usedPrompt' array, rerun the function.
 
 const oneDay = 1000 * 60 * 60 * 24;
+// stores prompt expiry times (24 hours) in ms
 
 // CHECK HOW TO GET THIS INTERVAL TO HAPPEN AT A LOGICAL TIME - I.E. 00:00 UTC TIME
 setInterval(newPrompt, oneDay);

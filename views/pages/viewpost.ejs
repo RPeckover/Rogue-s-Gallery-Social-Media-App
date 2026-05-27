@@ -12,23 +12,29 @@
                 <!-- Review images and how I want to handle them -->
             <% } %>
         <p>
-            <%= post.message %>
-            <!-- displays the post author's username -->
-        </p>
-        <p>
             <%= post.postedBy %>
             <!-- displays the post's text content -->
         </p>
+        <p>
+            <%= post.message %>
+            <!-- displays the post author's username -->
+        </p>
+        </div>
         <h4>Hecklers (Comments) <%= post.comments.length %></h4>
         <!-- displays the number of comments -->
-        <ul>
+        <div>
+        <ul class="viewpost-comment-container">
             <% post.comments.forEach(comment=>{ %>
                 <!-- loop housing each comment's relevant info within html elements -->
                 <li>
+                    <div class="post-user-info">
                     <p>
+                        <strong>
                         <%= comment.commentBy %>
                         <!-- list commenter of existing comment -->
+                        </strong>
                     </p>
+                    </div>
                     <p>
                         <%= comment.message %>
                         <!-- list existing comments -->
@@ -36,6 +42,7 @@
                 </li>
             <% }) %>
         </ul>
+        </div>
         <form action="/comment" method="POST">
         <!-- form to input a new comment -->
             <label>Add a Comment</label><br>
@@ -44,7 +51,6 @@
             <input type="submit" class="btn" value="Comment">
         </form>
         <a href="/application">Back to post timeline</a>
-    </div>
 </main>
 </div>
 </body>
