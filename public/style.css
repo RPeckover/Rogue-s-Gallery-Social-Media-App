@@ -6,11 +6,6 @@
 }
 
 header {
-  /* width: 100%; */
-  /* margin: 0%;
-  padding: 0%;
-  height: 100vh; */
-  /* margin: 0 auto; */
   background-color: rgb(41, 33, 119);
   display: flex;
   align-items: center;
@@ -52,6 +47,7 @@ body {
   /* styled to the root font size (by default 16px) allows accessible resizing from user */
   min-height: 100vh;
   /* ensures the footer doesn't display too high up the page */
+  justify-content: space-between;
 }
 
 /* main {
@@ -89,6 +85,8 @@ footer {
 ul {
   display: flex;
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 /* li {
@@ -253,12 +251,20 @@ a {
   margin: 5px;
   display: flex;
   justify-content: center;
+  text-decoration: underline;
+  color: rgb(41, 33, 119);
 }
 
 .post-user-avatar {
   max-width: 20px;
   max-height: 20px;
   /* align-self: center; */
+}
+
+.post-text {
+  flex-wrap: wrap;
+  margin: 5px 10px 5px 10px;
+  padding: 0px 0px 20px 0px;
 }
 
 .post-maker-container:hover {

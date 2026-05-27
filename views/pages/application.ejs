@@ -27,12 +27,12 @@
                     <% } else { %>
                         <p>sorry no image available</p>
                     <% } %>
-                <p>
+                <p><strong>
                     <%= post.postedBy %>
                     <!-- displays the post author's username -->
-                </p>
+                </p></strong>
                 </div>
-                <p>
+                <p class="post-text">
                     <%= post.message %>
                     <!-- displays the post's text content -->
                 </p>
@@ -54,7 +54,7 @@
         <!-- see if btn class stylings can be used -->
     </ul>
     <!-- Based on styling from: https://www.w3schools.com/css/css3_pagination_styles.asp -->
-</div>
 </main>
+</div>
 </body>
 <%- include('../partials/footer')%>
