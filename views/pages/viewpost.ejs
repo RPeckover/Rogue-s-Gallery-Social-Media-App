@@ -4,7 +4,8 @@
     <div class="content-wrapper">
 <main>
      <h2>Viewing Post</h2>
-    <div>
+    <div class="timeline-post">
+        <span class="post-user-info">
         <% if(post.imagePath){ %>
                 <img src="<%= post.imagePath %>" alt="" class="post-user-avatar">
             <% } else { %>
@@ -12,12 +13,15 @@
                 <!-- Review images and how I want to handle them -->
             <% } %>
         <p>
+            <strong>
             <%= post.postedBy %>
-            <!-- displays the post's text content -->
+            <!-- displays the post author's username -->
+            </strong>
         </p>
+        </span>
         <p>
             <%= post.message %>
-            <!-- displays the post author's username -->
+            <!-- displays the post's text content -->
         </p>
         </div>
         <h4>Hecklers (Comments) <%= post.comments.length %></h4>
@@ -26,7 +30,7 @@
         <ul class="viewpost-comment-container">
             <% post.comments.forEach(comment=>{ %>
                 <!-- loop housing each comment's relevant info within html elements -->
-                <li>
+                <li class="viewpost-comment">
                     <div class="post-user-info">
                     <p>
                         <strong>
@@ -43,15 +47,18 @@
             <% }) %>
         </ul>
         </div>
+        <br>
         <form action="/comment" method="POST">
         <!-- form to input a new comment -->
             <label>Add a Comment</label><br>
             <input type="hidden" id="postid" name="postid" value="<%= post._id %>">
-            <input type="text" id="comment" name="comment"><br>
+            <textarea rows="5" cols="50" maxlength="500" id="comment" name="comment" autocomplete="off"></textarea><br>
             <input type="submit" class="btn" value="Comment">
         </form>
+        <br>
         <a href="/application">Back to post timeline</a>
 </main>
+<br>
 </div>
 </body>
 <!-- <br> -->

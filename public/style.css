@@ -132,6 +132,10 @@ h4 {
 
 /* Text */
 
+textarea {
+  margin: 5px 15px 5px 15px;
+}
+
 .nav-text {
   color: rgb(97, 74, 247);
 }
@@ -235,9 +239,11 @@ a {
 }
 
 .timeline-post {
+  background-color: #887dc4;
   box-shadow: 0 4px 8px 0 rgba(85, 6, 97, 0.4);
   transition: 0.3s;
-  margin: 15px 10px 15px 10px;
+  margin: 12px;
+  padding: 0px 0px 10px 0px;
   border: outset 5px;
   border-color: rgb(80, 61, 209);
 }
@@ -318,4 +324,11 @@ a {
 .viewpost-comment-container {
   display: grid;
   grid-template-columns: 1fr;
+}
+
+.viewpost-comment {
+  background-color: #6cb0bb;
+  border: inset 3px;
+  border-color: grey;
+  margin: 10px;
 }

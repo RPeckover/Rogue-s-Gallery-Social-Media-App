@@ -7,7 +7,7 @@
     <h2>Create a new post</h2>
     <form action="/newpost" method="POST">
         <label>Add Text:</label><br>
-        <input required type="text" id="message" name="message"><br>
+        <textarea autofocus rows="5" cols="50" maxlength="500" id="message" name="message" autocomplete="off"></textarea><br>
         <!-- <label>Add Image:</label><br>
         <input type="file" name="myImage" accept="image/*"><br> -->
         <input type="submit" class="btn" value="Post">
