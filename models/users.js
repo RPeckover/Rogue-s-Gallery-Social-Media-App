@@ -16,6 +16,7 @@ const userSchema = new Schema({
   usedPrompts: [] 
   // will store prompts to ensure identical prompts aren't served to the same user twice
 });
+// this should also store posts they make in an array so that you can view them on their public profile page
 
 const bcrypt = require("bcrypt");
 // imports bcrypt

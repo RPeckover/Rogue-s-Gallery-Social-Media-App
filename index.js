@@ -10,10 +10,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // allows for processing post info within urls
 
+const utils = require("./utils.js");
+
 const users = require("./models/users.js");
 // imports custom user node module
 
-const tenMins = 1000 * 60 * 10;
+const thirtyMins = 1000 * 60 * 30;
 // stores session expiry times in ms
 
 
@@ -65,7 +67,7 @@ app.use(
     secret: sessionSecret,
     // the session secret is a salt for the hash and prevents security vulnerability to spoofing via cookies 
     saveUninitialized: true,
-    cookie: { maxAge: tenMins }, 
+    cookie: { maxAge: thirtyMins }, 
     // logs a user out after 10 mins - CHECK IF its 10 inactive mins or just 10 mins no matter what
     resave: false,
   })
@@ -256,20 +258,3 @@ app.get("/getposts", async (request, response) => {
   response.json({ posts: await postData.getPosts(5) });
 });
 // add ability to go to another page with further posts and curate the main timeline more to whoever is being followed by the logged in user
-
-// function to allow user to delete profile and all posts
-async function eraseUser() {
-  if (document.querySelector('#eraseTickbox').checked) {// checks the tickbox has been selected, confirming intent to erase the account
-    //ADD for loop going through posts, deleting them
-    window.alert("account deleted.");
-    //ADD delete user
-    request.session.destroy();
-    response.render("pages/register");// sends user back to register page
-} else {
-    window.alert("please also tick the checkbox if you would like to erase your account");// alerts user that they must use the tickbox to reset their progress
-}
-}
-
-async function erasePost() {
-  // use 'get one and update'?
-}
