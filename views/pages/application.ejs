@@ -5,9 +5,10 @@
 <main>
     <div class="post-maker-container">
     <h2>Create a new post</h2>
+    <h4>Prompt: Insecure Ghost</h4>
     <form action="/newpost" method="POST">
-        <label>Add Text:</label><br>
-        <textarea autofocus rows="5" cols="50" maxlength="300" id="message" name="message" autocomplete="off"></textarea><br>
+        <!-- <label>Add Text:</label><br> -->
+        <textarea autofocus rows="5" cols="50" maxlength="300" id="message" name="message" autocomplete="off" placeholder="Write your post"></textarea><br>
         <input type="submit" class="btn" value="Post">
     </form>
     </div>
@@ -23,14 +24,20 @@
                 <% if(post.imagePath){ %>
                         <img src="<%= post.imagePath %>" alt="" class="post-user-avatar">
                     <% } else { %>
-                        <p>sorry no image available</p>
+                        <p>pfp unavailable</p>
                     <% } %>
                 <p>
                     <strong>
-                    <%= post.postedBy %>
-                    <!-- displays the post author's username -->
-                     </strong>
+                        <a href="#">
+                        <%= post.postedBy %>
+                        <!-- displays the post author's username and acts as a link to their page -->
+                        </a>
+                    </strong>
                 </p>
+                <p>
+                    [prompt goes here]
+                </p>
+                <!-- prompt would display here -->
                 </div>
                 <p class="post-text">
                     <%= post.message %>

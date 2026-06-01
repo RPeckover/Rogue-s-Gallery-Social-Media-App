@@ -4,7 +4,8 @@ const {Schema, model} = mongoose
 const postSchema = new Schema({
     postedBy: String,
     message: String,
-    imagePath: String, // SEE HOW TO MAKE THIS THE AVATAR ATTATCHED TO USER SCHEMA
+    authorAvatar: String, 
+    // ^ see how to make this the avatar attached to user schema
     likes: Number,
     time: Date,
     comments: [
@@ -12,9 +13,16 @@ const postSchema = new Schema({
             message: String,
             commentBy: String,
             likes: Number
-            // Could I make 'likes' another nested data structure to error handle / prevent a user liking a post multiple times?
+            // likes and comments on other comments currently disabled
+            // make 'likes' another nested data structure to error handle / prevent a user liking a post multiple times?
         }
-    ]
+    ]   
+    // likes: [
+    //      {
+    //      likeNum: Number,
+    //      likedBy: [],
+    //      }
+    // ]
 })
 
 const Post = model('Post', postSchema)
@@ -23,7 +31,8 @@ function addNewPost(userID, post, myPFP){
     let myPost={
         postedBy: userID,
         message: post.message,
-        imagePath: myPFP, // SEE HOW TO MAKE THIS THE AVATAR ATTATCHED TO USER SCHEMA
+        imagePath: myPFP, 
+        // ^ see how to make this the avatar attached to user schema
         likes: 0,
         time: Date.now(),
         comments: []
@@ -32,6 +41,7 @@ function addNewPost(userID, post, myPFP){
         .catch(err=>{
             console.log("Error: "+err)
         })
+    // prevents invalid data being input to the database
 }
 
 async function getPosts(n=3){
@@ -44,6 +54,7 @@ async function getPosts(n=3){
             data=mongoData
         })
     return data
+    // returns posts chronologically from most recent to oldest
 }
 
 async function getPost(postID){
@@ -54,6 +65,7 @@ async function getPost(postID){
             foundPost=mongoData
         })
     return foundPost
+    // locates specific posts by ID
 }
 
 async function likePost(postID){
@@ -64,8 +76,8 @@ async function likePost(postID){
     //         foundPost=mongoData
     //     })
     // return foundPost
+    // increments 'like' value on post 
 }
-//Confused by this ^
 
 async function commentOnPost(postID, commentText, commentBy){
     let newComment={
@@ -75,6 +87,7 @@ async function commentOnPost(postID, commentText, commentBy){
     }
     await Post.findOneAndUpdate({_id:postID}, {$push: {comments: newComment}})
         .exec()
+    // appends comment to the relevent post
 }
 
 module.exports={
@@ -84,3 +97,4 @@ module.exports={
     likePost,
     commentOnPost
 }
+// exports functions for use elsewhere

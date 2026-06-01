@@ -11,13 +11,19 @@ app.use(express.urlencoded({ extended: false }));
 // allows for processing post info within urls
 
 const utils = require("./utils.js");
+// imports custom utilities node module
 
 const users = require("./models/users.js");
 // imports custom user node module
 
+const postData = require("./models/post-data.js");
+// imports custom post node module
+
+const promptData = require("./models/prompts.js");
+// imports custom prompt node module
+
 const thirtyMins = 1000 * 60 * 30;
 // stores session expiry times in ms
-
 
 const sessions = require("express-session");
 // allows usage of the 'sessions' module 
@@ -29,9 +35,9 @@ app.use(cookieParser());
 
 require("dotenv").config();
 const mongoDBPassword=process.env.MONGODB_PASSWORD;
-// 
+// enables use of environment (ENV) files for storing sensitive data
 const myDatabase="roshan_blog";
-// 
+// MongoDB database
 
 const mongoose = require("mongoose");
 // imports mongoose ODM library
@@ -40,13 +46,11 @@ const connectionString = `mongodb+srv://CCO6005-00:${mongoDBPassword}@cluster0.l
 mongoose.connect(connectionString);
 // 
 
-const postData = require("./models/post-data.js");
-
 const multer = require("multer");
 const path = require("path");
 const upload = multer({ dest: "./public/uploads" });
 
-// edit profile functionality
+// edit profile controller
 app.post("/profileEdit", checkLoggedIn, upload.single("myPFP"), async (request, response) => {
     console.log(request.body, request.file, request.session.userid);
     console.log(request.file);
@@ -54,7 +58,7 @@ app.post("/profileEdit", checkLoggedIn, upload.single("myPFP"), async (request, 
      if (request.file && request.file.filename) {
     // checks file exists and has a file name
     avatar = "uploads/" + request.file.filename;
-    // LET USERNAME AND PASSWORD BE EDITED TOO
+    // enable password and username editing too
   }
 });
 
@@ -81,6 +85,7 @@ function checkLoggedIn(request, response, nextAction) {
     } else {
       request.session.destroy();
       response.render("pages/login", {
+      // serves the user the '' page view
         isLoggedIn: checkLoggedInState(request),
       });
     }
@@ -96,6 +101,7 @@ function checkLoggedInState(request) {
 // application EJS page view
 app.get("/application", checkLoggedIn, async (request, response) => {
   response.render("pages/application", {
+    // serves the user the '' page view
     username: request.session.userid,
     // added to relevent pages so that username is displayed
     isLoggedIn: checkLoggedInState(request),
@@ -108,6 +114,7 @@ app.get("/application", checkLoggedIn, async (request, response) => {
 app.get("/viewpost", checkLoggedIn, async (request, response) => {
   let postID = request.query.postid;
   response.render("pages/viewpost", {
+    // serves the user the '' page view
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
     post: await postData.getPost(postID),
@@ -119,16 +126,16 @@ app.get("/like", checkLoggedIn, async (request, response) => {
   let postID = request.query.postid;
   await postData.likePost(postID);
   response.render("pages/application", {
+    // serves the user the 'application' page view
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
     postData: await postData.getPosts(5),
-    // seems inefficient to call this each time a user gives a like
   });
 });
 // NOTE - CURRENTLY USER CAN LIKE A POST MULTIPLE TIMES BY REFRESHING THE PAGE OR JUST CLICKING MULTIPLE TIMES
 
 
-// functionality for adding comments
+// controller for adding comments
 app.post("/comment", checkLoggedIn, async (request, response) => {
   // let postID=request.query.postid
   await postData.commentOnPost(
@@ -137,6 +144,7 @@ app.post("/comment", checkLoggedIn, async (request, response) => {
     request.session.userid
   );
   response.render("pages/viewpost", {
+    // serves the user the 'viewpost' page view
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
     post: await postData.getPost(request.body.postid),
@@ -146,6 +154,7 @@ app.post("/comment", checkLoggedIn, async (request, response) => {
 // register EJS page view
 app.get("/register", (request, response) => {
   response.render("pages/register", {
+    // serves the user the 'register' page view
     isLoggedIn: checkLoggedInState(request),
   });
 });
@@ -153,6 +162,7 @@ app.get("/register", (request, response) => {
 // logout EJS page view
 app.get("/logout", (request, response) => {
   response.render("pages/logout", {
+    // serves the user the 'logout' page view
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
   });
@@ -161,57 +171,59 @@ app.get("/logout", (request, response) => {
 // profile EJS page view
 app.get("/profile", checkLoggedIn, async (request, response) => {
   response.render("pages/profile", {
+    // serves the user the '' page view
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
   });
 });
-// FIXED - USERS PREVIOUSLY NOT LOGGED IN COULD ACCESS THE PROFILE URL AND 'EDIT THEIR PROFILE', ADDING 'checkLoggedIn, async' TO 'app.get()' resolved this issue, comment included for reference if issue arises elsewhere
 
 // login EJS page view
 app.get("/login", (request, response) => {
   response.render("pages/login", {
+    // serves the user the '' page view
     isLoggedIn: checkLoggedInState(request),
   });
 });
 
 // controller for logout
 app.post("/logout", async (request, response) => {
-  // users.setLoggedIn(request.session.userid,false)
   request.session.destroy();
-  console.log(await users.getUsers()); // THIS IS USEFUL FOR TESTING BUT SHOULD BE REMOVED IN FINAL VERSION FOR SECURITY REASONS
   response.redirect("./");
+  // serves the user the '' page view
 });
 
 // about EJS page view
 app.get("/about", (request, response) => {
   response.render("pages/about", {
+    // serves the user the '' page view
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
   });
 });
 
-// new user registry functionality
+// new user registry controller
 app.post("/register", async (request, response) => {
   console.log(request.body);
   let userData = request.body;
-  // console.log(userData.username)
   if (await users.findUser(userData.username)) {
-    console.log("user exists");
+  // checks existing users for a matching username
+    window.alert("This username already exists");
+    // alerts user that their username is not available
   } else {
     await users.newUser(userData.username, userData.password);
     response.redirect("/application"); 
+    // serves the user the '' page view
   }
-  console.log(await users.getUsers());
 });
 
-// login functionality
+// controller for login
 app.post("/login", async (request, response) => {
   console.log(request.body);
   let userData = request.body;
-  console.log(userData);
+  console.log(userData); // remove
   if (await users.findUser(userData.username)) {
     console.log("user found");
-    //with bcrypt code must be passed as callback
+    // with bcrypt code must be passed as callback
     await users.checkPassword(
       userData.username,
       userData.password,
@@ -220,38 +232,34 @@ app.post("/login", async (request, response) => {
           console.log("password matches");
           request.session.userid = userData.username;
           response.redirect("/application");
+          // serves the user the '' page view
         } else {
-          console.log("incorrect password");
-          console.log(`${userData.password}`);
+          window.alert("Incorrect password");
+          // alerts user that the password they have used is incorrect
           response.redirect("/login");
-          // Maybe redirect user to login page but also trigger a popover / callout letting the user know the login failed
+          // serves the user the '' page view
         }
       }
     );
   } else {
-    console.log("no such user");
+    window.alert("No such user exists");
+    // alerts user that the username they input doesn't belong to an existing user
     response.redirect("/login");
-    // Maybe redirect user to login page but also trigger a popover / callout letting the user know the login failed
+    // serves the user the '' page view
   }
 });
 
-app.post("/post", (request, response) => {
-  console.log(request.body);
-});
-// Was this for testing? ^
-
-// post creation functionality
+// controller for post creation 
 app.post("/newpost", checkLoggedIn, async (request, response) => {
-  console.log(request.body);
-  console.log(request.session.userid);
   postData.addNewPost(request.session.userid, request.body);
   response.render("pages/application", {
+    // serves the user the '' page view
     username: request.session.userid,
     isLoggedIn: checkLoggedInState(request),
     postData: await postData.getPosts(5),
   });
 });
-// NOTE - CURRENTLY USER CAN REFRESH NEWPOST URL TO SPAM POSTS
+// currently user can refresh newpost url to spam posts
 
 // post/timeline display functionality
 app.get("/getposts", async (request, response) => {

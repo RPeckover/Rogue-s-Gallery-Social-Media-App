@@ -2,10 +2,13 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 const userSchema = new Schema({
   username: String,
+  //seperate display name?
   password: String,
   loggedin: Boolean,
+  //email: String,
   //bio: String,
   avatar: {type: String, default: "/images/defaultPFP.png"}, // check this
+  //posts: [],
   currentPrompt: [
     {  
       promptText: String,
@@ -13,19 +16,21 @@ const userSchema = new Schema({
       currentTime: {type: Date, default: Date.now}
     }
   ],
-  usedPrompts: [] 
+  usedPrompts: [[]] 
   // will store prompts to ensure identical prompts aren't served to the same user twice
+  //following: [];
+  //followers: [];
 });
 // this should also store posts they make in an array so that you can view them on their public profile page
+// schema elements commented out remain in place to show what my intentions have been
 
 const bcrypt = require("bcrypt");
 // imports bcrypt
 const SALT_WORK_FACTOR = 10;
-// 
+// level of incryption 
 
 userSchema.pre("save", function (next) {
   let user = this;
-//Why do we make user = 'this'?  - copied from bcrypt
 
   if (!user.isModified("password")) return next();
   // only hash the password if it has been modified (or is new)
@@ -48,8 +53,8 @@ userSchema.pre("save", function (next) {
 const User = model('myDemoUser', userSchema);
 
 async function newUser(username, password) {
-  const user = { username: username, password: password, loggedin: false, avatar: myPFP}; // check if this or default in schema itself is correct for a default PFP
-  // bio: bio, (Add this above if going ahead with including bios in profiles)
+  const user = { username: username, password: password, loggedin: false, avatar: "/images/defaultPFP.png"}; 
+  // sets default PFP
   await User.create(user).catch((err) => {
     console.log("Error:" + err);
   });
@@ -101,3 +106,4 @@ exports.newUser = newUser;
 exports.getUsers = getUsers;
 exports.findUser = findUser;
 exports.checkPassword = checkPassword;
+// exports functions for use elsewhere

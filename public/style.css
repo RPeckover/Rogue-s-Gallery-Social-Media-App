@@ -250,7 +250,7 @@ a {
   box-shadow: 0 4px 8px 0 rgba(85, 6, 97, 0.4);
   transition: 0.3s;
   margin: 12px;
-  padding: 0px 0px 10px 0px;
+  padding: 0px 5px 10px 5px;
   border: outset 5px;
   border-color: rgb(80, 61, 209);
   word-wrap: break-word;
@@ -342,9 +342,10 @@ a {
 
 .viewpost-comment {
   background-color: #6cb0bb;
-  border: inset 3px;
+  border: inset 3.5px;
   border-color: grey;
   margin: 10px;
+  padding: 5px;
   word-wrap: break-word;
   /* prevents overly long strings of text from breaching the element */
   max-height: 350px;

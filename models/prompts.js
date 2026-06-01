@@ -1,16 +1,4 @@
-// const mongoose = require("mongoose");
-// const { Schema, model } = mongoose;
-// const promptSchema = new Schema({
-//   promptText: String,
-//   creationTime: {type: Date},
-//   currentTime: {type: Date, default: Date.now},
-// });
-
 const { getUsers } = require("./users");
-
-// const Prompt = model("MyDemoPrompt", promptSchema);
-
-// ^ All of the above commented out as PROMPT IS PARTT OF USER SCHEMA CURRENTLY
 
 // INTENDED FUNCTIONALITY OF THE BELOW FUNCTION
 // Every 24 hours add current prompt ('promptText' in user schema) to 'usedPrompts' array (also in user schema), randomise a number, 
@@ -20,7 +8,7 @@ const { getUsers } = require("./users");
 const oneDay = 1000 * 60 * 60 * 24;
 // stores prompt expiry times (24 hours) in ms
 
-// CHECK HOW TO GET THIS INTERVAL TO HAPPEN AT A LOGICAL TIME - I.E. 00:00 UTC TIME
+// get this 24h interval to happen at a logical time - I.E. 00:00 UTC time?
 setInterval(newPrompt, oneDay);
 // every 24 hours generates a new prompt
 
@@ -359,8 +347,7 @@ let currentPrompt;
 // declared to allow switch statment to change the variable's value
 
 // loop through the users to update each user's prompt?
-// Look at 'find all and update' - or 'find one and update' 
-// or simulate it and use documentation
+// look at 'find all and update' - or 'find one and update' 
 
     userID.usedPrompts.push(promptText);
     // stores expired prompts in the user data object
@@ -374,14 +361,12 @@ let currentPrompt;
                 let randomDescriptor = descriptors[Math.floor(Math.random() * descriptors.length)];
                 let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
                 currentPrompt = randomDescriptor + " " + randomNoun;
-                // set creation time?
             break;
             //prompt method 2 
             case 2:
                 let randomNoun1 = nouns[Math.floor(Math.random() * nouns.length)];
                 let randomNoun2 = nouns[Math.floor(Math.random() * nouns.length)];
                 currentPrompt = randomNoun1 + " / " + randomNoun2 + " " + fusion;
-                // set creation time?
             break;
             //prompt method 3
             case 3:
@@ -389,7 +374,6 @@ let currentPrompt;
                 let randomDescriptor2 = descriptors[Math.floor(Math.random() * descriptors.length)];
                 let randomNoun3 = nouns[Math.floor(Math.random() * nouns.length)];
                 currentPrompt = randomDescriptor1 + " " + randomDescriptor2 + " " + randomNoun3;
-                // set creation time?
                 break;
         promptText = currentPrompt;
         // make promptText = currentPrompt and store in userSchema
@@ -399,7 +383,6 @@ let currentPrompt;
 }
 
 // getUsers();
-// where do I put this
 
 // psuedocode - return randomised result from switch statment and set its value eaqual to 'promptText' in 'userSchema' found on 'users.js'
 // also set creation time using date.now and make that value equal to 'creationTime' in 'userSchema' 
@@ -408,7 +391,5 @@ let currentPrompt;
 //     newPrompt();
 // }
 // ^ reruns function if prompt has already been given to user previously 
-
-// IMPORTANT - FIGURE OUT IF THERE ARE POTENTIAL DISCREPANCIES BETWEEN USERS PROMPT REFRESH TIMES
 
 exports.newPrompt = newPrompt;
